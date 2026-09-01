@@ -1,0 +1,2862 @@
+/* =========================================================
+   MAPLE'S GARDEN
+   Visual Style v2 — Clean CSS
+   ========================================================= */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+body {
+    font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+
+    background: #dfead7;
+    color: #344234;
+    -webkit-font-smoothing: antialiased;
+    user-select: none;
+}
+
+/* =========================================================
+   APP
+   ========================================================= */
+
+#app {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: #dfead7;
+}
+
+/* =========================================================
+   TOP BAR
+   ========================================================= */
+
+.top-bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 70px;
+
+    padding:
+        env(safe-area-inset-top)
+        18px
+        0
+        18px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    z-index: 100;
+}
+
+.app-title {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+
+    font-size: 17px;
+    font-weight: 600;
+    color: #435441;
+
+    text-shadow:
+        0 1px 1px rgba(255, 255, 255, 0.4);
+}
+
+.maple-leaf {
+    display: inline-block;
+    font-size: 18px;
+    transform: rotate(-8deg);
+}
+
+.icon-button {
+    width: 42px;
+    height: 42px;
+
+    border: none;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.58);
+
+    font-size: 18px;
+    cursor: pointer;
+
+    backdrop-filter: blur(10px);
+
+    box-shadow:
+        0 4px 15px rgba(50, 70, 50, 0.08);
+}
+
+/* =========================================================
+   WORLD
+   ========================================================= */
+
+#world {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+}
+
+/* =========================================================
+   SKY
+   ========================================================= */
+
+.sky {
+    position: absolute;
+    inset: 0;
+    height: 66%;
+
+    background:
+        linear-gradient(
+            to bottom,
+            #c6dfed 0%,
+            #d5e8df 48%,
+            #e2ead7 100%
+        );
+
+    transition: background 2s ease;
+}
+
+/* =========================================================
+   SUN
+   ========================================================= */
+
+.sun {
+    position: absolute;
+
+    width: 76px;
+    height: 76px;
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            #f9e7aa 0%,
+            #f4d88b 65%,
+            #efce78 100%
+        );
+
+    top: 88px;
+    right: 48px;
+
+    box-shadow:
+        0 0 25px rgba(244, 216, 139, 0.45),
+        0 0 60px rgba(244, 216, 139, 0.2);
+}
+
+/* =========================================================
+   MOON
+   ========================================================= */
+
+.moon {
+    position: absolute;
+
+    width: 58px;
+    height: 58px;
+    border-radius: 50%;
+
+    background: #f7f2d9;
+
+    top: 92px;
+    right: 58px;
+
+    opacity: 0;
+    transition: opacity 1s ease;
+
+    box-shadow:
+        0 0 25px rgba(245, 241, 217, 0.3);
+}
+
+.moon::after {
+    content: "";
+
+    position: absolute;
+    width: 58px;
+    height: 58px;
+    border-radius: 50%;
+
+    background: #314754;
+
+    left: 18px;
+    top: -7px;
+}
+
+/* =========================================================
+   CLOUDS
+   ========================================================= */
+
+.cloud {
+    position: absolute;
+
+    width: 100px;
+    height: 31px;
+    border-radius: 30px;
+
+    background: rgba(255, 255, 255, 0.42);
+    filter: blur(0.2px);
+}
+
+.cloud::before,
+.cloud::after {
+    content: "";
+
+    position: absolute;
+
+    background: rgba(255, 255, 255, 0.42);
+    border-radius: 50%;
+}
+
+.cloud::before {
+    width: 45px;
+    height: 45px;
+
+    left: 18px;
+    bottom: 7px;
+}
+
+.cloud::after {
+    width: 34px;
+    height: 34px;
+
+    right: 12px;
+    bottom: 5px;
+}
+
+.cloud-one {
+    top: 128px;
+    left: -100px;
+
+    animation:
+        cloudMove
+        38s
+        linear
+        infinite;
+}
+
+.cloud-two {
+    top: 205px;
+    right: -120px;
+
+    transform: scale(0.72);
+
+    animation:
+        cloudMoveReverse
+        48s
+        linear
+        infinite;
+}
+
+.cloud-three {
+    top: 270px;
+    left: 35%;
+
+    transform: scale(0.55);
+    opacity: 0.35;
+
+    animation:
+        cloudFloat
+        30s
+        ease-in-out
+        infinite;
+}
+
+@keyframes cloudMove {
+    from {
+        transform: translateX(-100px);
+    }
+
+    to {
+        transform: translateX(520px);
+    }
+}
+
+@keyframes cloudMoveReverse {
+    from {
+        transform: translateX(100px);
+    }
+
+    to {
+        transform: translateX(-520px);
+    }
+}
+
+@keyframes cloudFloat {
+    0%,
+    100% {
+        transform:
+            translateX(-15px)
+            scale(0.55);
+    }
+
+    50% {
+        transform:
+            translateX(15px)
+            scale(0.55);
+    }
+}
+
+/* =========================================================
+   BIRDS
+   ========================================================= */
+
+.bird {
+    position: absolute;
+
+    width: 18px;
+    height: 8px;
+
+    color: #718478;
+    font-size: 18px;
+    opacity: 0.45;
+
+    transform: rotate(-10deg);
+}
+
+.bird::before,
+.bird::after {
+    content: "";
+
+    position: absolute;
+
+    width: 9px;
+    height: 5px;
+
+    border-top:
+        2px solid #718478;
+
+    border-radius: 50%;
+}
+
+.bird::before {
+    left: 0;
+}
+
+.bird::after {
+    right: 0;
+}
+
+.bird-one {
+    top: 180px;
+    left: 27%;
+
+    animation:
+        birdFly
+        18s
+        linear
+        infinite;
+}
+
+.bird-two {
+    top: 235px;
+    left: 55%;
+
+    transform: scale(0.7);
+
+    animation:
+        birdFly
+        23s
+        linear
+        infinite;
+}
+
+@keyframes birdFly {
+    from {
+        transform:
+            translateX(-50px)
+            translateY(0);
+    }
+
+    50% {
+        transform:
+            translateX(70px)
+            translateY(-8px);
+    }
+
+    to {
+        transform:
+            translateX(180px)
+            translateY(0);
+    }
+}
+
+/* =========================================================
+   DISTANT HILLS
+   ========================================================= */
+
+.distant-hills {
+    position: absolute;
+
+    left: 0;
+    right: 0;
+    top: 34%;
+    height: 25%;
+
+    z-index: 2;
+    pointer-events: none;
+}
+
+.hill {
+    position: absolute;
+
+    bottom: 0;
+
+    border-radius: 50% 50% 0 0;
+    opacity: 0.45;
+}
+
+.hill-one {
+    left: -15%;
+
+    width: 65%;
+    height: 110px;
+
+    background: #a9c39d;
+}
+
+.hill-two {
+    left: 30%;
+
+    width: 65%;
+    height: 145px;
+
+    background: #a2bd97;
+}
+
+.hill-three {
+    right: -20%;
+
+    width: 55%;
+    height: 120px;
+
+    background: #97b58c;
+}
+
+/* =========================================================
+   TREES
+   ========================================================= */
+
+.trees {
+    position: absolute;
+
+    top: 19%;
+    left: 0;
+    width: 100%;
+    height: 42%;
+
+    z-index: 4;
+    pointer-events: none;
+}
+
+.tree {
+    position: absolute;
+    bottom: 0;
+}
+
+.tree-one {
+    left: -42px;
+}
+
+.tree-two {
+    right: -55px;
+
+    transform: scale(0.78);
+}
+
+.tree-three {
+    left: 23%;
+    bottom: 15px;
+
+    transform: scale(0.46);
+    opacity: 0.7;
+}
+
+.tree-trunk {
+    width: 30px;
+    height: 125px;
+
+    background:
+        linear-gradient(
+            to right,
+            #755b47,
+            #94745a,
+            #735844
+        );
+
+    margin: auto;
+
+    border-radius:
+        10px
+        10px
+        0
+        0;
+}
+
+.tree-crown {
+    position: relative;
+
+    width: 155px;
+    height: 155px;
+
+    background:
+        radial-gradient(
+            circle at 35% 30%,
+            #aec49f,
+            #91ae84 70%
+        );
+
+    border-radius: 50%;
+
+    box-shadow:
+        -38px 27px 0 #a5bd96,
+        38px 30px 0 #86a57b,
+        0 5px 25px rgba(50, 80, 50, 0.1);
+}
+
+/* =========================================================
+   GARDEN
+   ========================================================= */
+
+.garden {
+    position: absolute;
+
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 49%;
+
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            to bottom,
+            #9cbd8d 0%,
+            #88ab76 48%,
+            #759862 100%
+        );
+
+    border-radius:
+        48%
+        48%
+        0
+        0 /
+        14%
+        14%
+        0
+        0;
+
+    z-index: 10;
+}
+
+.garden::before {
+    content: "";
+
+    position: absolute;
+
+    left: -10%;
+    right: -10%;
+    top: -18px;
+    height: 55px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(189, 214, 170, 0.45);
+}
+
+.garden-light {
+    position: absolute;
+    inset: 0;
+
+    background:
+        radial-gradient(
+            circle at 50% 20%,
+            rgba(255, 255, 220, 0.22),
+            transparent 42%
+        );
+
+    pointer-events: none;
+}
+
+.grass-layer {
+    position: absolute;
+    inset: 0;
+
+    opacity: 0.18;
+
+    background-image:
+        radial-gradient(
+            circle at 20% 30%,
+            #4f7348 1px,
+            transparent 1px
+        ),
+        radial-gradient(
+            circle at 70% 50%,
+            #4f7348 1px,
+            transparent 1px
+        );
+
+    background-size:
+        42px 42px;
+}
+
+/* =========================================================
+   GRASS TUFTS
+   ========================================================= */
+
+.grass-tuft {
+    position: absolute;
+
+    color: #55794e;
+    font-size: 27px;
+    opacity: 0.55;
+
+    z-index: 4;
+}
+
+.tuft-one {
+    left: 7%;
+    bottom: 27%;
+}
+
+.tuft-two {
+    left: 28%;
+    bottom: 12%;
+}
+
+.tuft-three {
+    left: 53%;
+    bottom: 31%;
+}
+
+.tuft-four {
+    right: 24%;
+    bottom: 14%;
+}
+
+.tuft-five {
+    right: 7%;
+    bottom: 34%;
+}
+
+/* =========================================================
+   FLOWERS
+   ========================================================= */
+
+.flower {
+    position: absolute;
+
+    width: 14px;
+    height: 32px;
+
+    z-index: 5;
+}
+
+.flower::before {
+    content: "";
+
+    position: absolute;
+
+    width: 4px;
+    height: 25px;
+
+    background: #5d8255;
+
+    left: 5px;
+    top: 8px;
+
+    border-radius: 5px;
+}
+
+.flower span {
+    position: absolute;
+
+    width: 15px;
+    height: 15px;
+
+    border-radius: 50%;
+
+    background: #e7c5c9;
+
+    top: 0;
+
+    box-shadow:
+        7px 0 0 #e7c5c9,
+        3px 6px 0 #e7c5c9,
+        -4px 3px 0 #e7c5c9;
+}
+
+.flower-one {
+    left: 17%;
+    bottom: 29%;
+}
+
+.flower-two {
+    left: 74%;
+    bottom: 43%;
+
+    transform: scale(0.8);
+}
+
+.flower-three {
+    left: 34%;
+    bottom: 14%;
+
+    transform: scale(0.75);
+}
+
+.flower-four {
+    right: 9%;
+    bottom: 21%;
+}
+
+.flower-five {
+    left: 46%;
+    bottom: 48%;
+
+    transform: scale(0.62);
+}
+
+.flower-six {
+    left: 6%;
+    bottom: 44%;
+
+    transform: scale(0.7);
+}
+
+/* =========================================================
+   GARDEN OBJECTS
+   ========================================================= */
+
+.garden-object {
+    position: absolute;
+
+    font-size: 31px;
+
+    filter:
+        drop-shadow(
+            0 4px 3px rgba(0, 0, 0, 0.13)
+        );
+
+    z-index: 15;
+}
+
+.carrot {
+    left: 13%;
+    bottom: 10%;
+}
+
+.basket {
+    right: 11%;
+    bottom: 14%;
+    opacity: 0.82;
+}
+
+.garden-stone {
+    position: absolute;
+
+    background:
+        linear-gradient(
+            145deg,
+            #b5b7a8,
+            #929786
+        );
+
+    border-radius: 50%;
+
+    box-shadow:
+        inset -3px -3px 4px
+        rgba(0, 0, 0, 0.08);
+}
+
+.stone-one {
+    width: 25px;
+    height: 14px;
+
+    left: 38%;
+    bottom: 9%;
+}
+
+.stone-two {
+    width: 18px;
+    height: 11px;
+
+    right: 34%;
+    bottom: 25%;
+}
+
+.stone-three {
+    width: 30px;
+    height: 16px;
+
+    right: 5%;
+    bottom: 8%;
+}
+
+/* =========================================================
+   MEEPS' SPECIAL TOYS
+   Blue Long-Necked Duck + White/Black Rabbit Teddy
+   ========================================================= */
+
+.special-toy {
+    position: absolute;
+
+    pointer-events: none;
+    transform-origin: bottom center;
+
+    z-index: 22;
+    display: block;
+}
+
+/* =========================================================
+   BLUE LONG-NECKED DUCK
+   ========================================================= */
+
+.duck-toy {
+    left: 24%;
+    bottom: 24%;
+    width: 58px;
+    height: 72px;
+    animation:
+        duckIdle
+        4.5s
+        ease-in-out
+        infinite;
+}
+
+.duck-body {
+    position: absolute;
+
+    left: 7px;
+    bottom: 0;
+
+    width: 43px;
+    height: 31px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #78b8d8,
+            #4a86aa
+        );
+
+    border-radius:
+        55%
+        48%
+        45%
+        50%;
+
+    box-shadow:
+        inset -4px -4px 0
+        rgba(0, 0, 0, 0.09);
+}
+
+.duck-neck {
+    position: absolute;
+
+    left: 19px;
+    bottom: 21px;
+
+    width: 16px;
+    height: 40px;
+
+    background:
+        linear-gradient(
+            to right,
+            #5794b5,
+            #7dbbd6,
+            #4b87a9
+        );
+
+    border-radius:
+        50%
+        50%
+        40%
+        40%;
+
+    transform:
+        rotate(-3deg);
+}
+
+.duck-head {
+    position: absolute;
+
+    left: 13px;
+    top: 0;
+
+    width: 30px;
+    height: 27px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #7fc1dd,
+            #4d8eaf
+        );
+
+    border-radius: 50%;
+
+    box-shadow:
+        inset -3px -3px 0
+        rgba(0, 0, 0, 0.08);
+}
+
+.duck-eye {
+    position: absolute;
+
+    width: 5px;
+    height: 5px;
+
+    border-radius: 50%;
+    background: #273b43;
+
+    right: 6px;
+    top: 8px;
+}
+
+.duck-beak {
+    position: absolute;
+
+    width: 14px;
+    height: 8px;
+
+    right: -11px;
+    top: 12px;
+
+    background: #d6aa67;
+
+    border-radius:
+        70%
+        40%
+        60%
+        40%;
+
+    transform:
+        rotate(-4deg);
+}
+
+.duck-wing {
+    position: absolute;
+
+    width: 20px;
+    height: 16px;
+
+    left: 10px;
+    bottom: 9px;
+
+    background:
+        rgba(65, 122, 156, 0.78);
+
+    border-radius:
+        60%
+        40%
+        60%
+        40%;
+
+    transform:
+        rotate(12deg);
+}
+
+.duck-toy::after {
+    content: "";
+
+    position: absolute;
+
+    width: 46px;
+    height: 9px;
+
+    left: 5px;
+    bottom: -4px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(45, 65, 40, 0.16);
+
+    filter: blur(1px);
+
+    z-index: -1;
+}
+
+/* =========================================================
+   LITTLE WHITE + BLACK RABBIT TEDDY
+   ========================================================= */
+
+.rabbit-teddy-toy {
+    right: 18%;
+    bottom: 27%;
+    width: 54px;
+    height: 58px;
+    animation:
+        teddyIdle
+        5.2s
+        ease-in-out
+        infinite;
+}
+
+.teddy-body {
+    position: absolute;
+
+    left: 10px;
+    bottom: 0;
+
+    width: 38px;
+    height: 37px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #ffffff,
+            #e8e6df
+        );
+
+    border-radius:
+        48%
+        48%
+        42%
+        42%;
+
+    box-shadow:
+        inset -3px -3px 0
+        rgba(0, 0, 0, 0.06);
+}
+
+.teddy-head {
+    position: absolute;
+
+    left: 6px;
+    top: 2px;
+
+    width: 43px;
+    height: 37px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #ffffff,
+            #e9e7e1
+        );
+
+    border-radius: 50%;
+
+    box-shadow:
+        0 2px 3px
+        rgba(0, 0, 0, 0.06);
+}
+
+.teddy-ear-black {
+    position: absolute;
+
+    width: 16px;
+    height: 22px;
+
+    left: 2px;
+    top: -9px;
+
+    background:
+        linear-gradient(
+            to bottom,
+            #292a28,
+            #20211f
+        );
+
+    border-radius:
+        55%
+        55%
+        45%
+        45%;
+
+    transform:
+        rotate(-12deg);
+}
+
+.teddy-ear-white {
+    position: absolute;
+
+    width: 16px;
+    height: 22px;
+
+    right: 2px;
+    top: -9px;
+
+    background:
+        linear-gradient(
+            to bottom,
+            #ffffff,
+            #e8e5df
+        );
+
+    border-radius:
+        55%
+        55%
+        45%
+        45%;
+
+    transform:
+        rotate(10deg);
+}
+
+.teddy-face-patch {
+    position: absolute;
+
+    width: 17px;
+    height: 22px;
+
+    left: 2px;
+    top: 5px;
+
+    background: #292a28;
+
+    border-radius:
+        50%
+        35%
+        45%
+        55%;
+
+    transform:
+        rotate(-5deg);
+}
+
+.teddy-eye {
+    position: absolute;
+
+    width: 5px;
+    height: 5px;
+
+    border-radius: 50%;
+    background: #302d29;
+
+    top: 15px;
+
+    z-index: 3;
+}
+
+.teddy-eye-left {
+    left: 12px;
+}
+
+.teddy-eye-right {
+    right: 9px;
+}
+
+.teddy-nose {
+    position: absolute;
+
+    width: 6px;
+    height: 5px;
+
+    left: 19px;
+    top: 22px;
+
+    border-radius: 50%;
+
+    background: #b87976;
+
+    z-index: 4;
+}
+
+.teddy-paw {
+    position: absolute;
+
+    width: 13px;
+    height: 18px;
+
+    bottom: 2px;
+
+    background: #eeeae3;
+
+    border-radius: 50%;
+}
+
+.teddy-paw-left {
+    left: 6px;
+}
+
+.teddy-paw-right {
+    right: 6px;
+}
+
+.rabbit-teddy-toy::after {
+    content: "";
+
+    position: absolute;
+
+    width: 40px;
+    height: 9px;
+
+    left: 7px;
+    bottom: -4px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(45, 65, 40, 0.15);
+
+    filter: blur(1px);
+
+    z-index: -1;
+}
+
+/* =========================================================
+   TOY IDLE ANIMATIONS
+   ========================================================= */
+
+@keyframes duckIdle {
+    0%,
+    100% {
+        transform:
+            translateY(0)
+            rotate(0deg);
+    }
+
+    50% {
+        transform:
+            translateY(-2px)
+            rotate(-1deg);
+    }
+}
+
+@keyframes teddyIdle {
+    0%,
+    100% {
+        transform:
+            translateY(0)
+            rotate(0deg);
+    }
+
+    50% {
+        transform:
+            translateY(-1px)
+            rotate(1deg);
+    }
+}
+
+/* =========================================================
+   MAPLE / MEEPS
+   ========================================================= */
+
+.rabbit {
+    position: absolute;
+
+    width: 112px;
+    height: 128px;
+
+    left: 50%;
+    top: 55%;
+
+    transform:
+        translate(-50%, -50%);
+
+    cursor: pointer;
+
+    z-index: 30;
+
+    transition:
+        left 1.6s ease-in-out,
+        top 1.6s ease-in-out;
+
+    touch-action: manipulation;
+
+    will-change:
+        left,
+        top,
+        transform;
+}
+
+/* =========================================================
+   MAPLE SHADOW
+   ========================================================= */
+
+.rabbit-shadow {
+    position: absolute;
+
+    width: 78px;
+    height: 19px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(40, 60, 35, 0.18);
+
+    bottom: 0;
+    left: 17px;
+
+    filter: blur(1px);
+}
+
+/* =========================================================
+   MAPLE BODY
+   ========================================================= */
+
+.rabbit-body {
+    position: absolute;
+
+    left: 18px;
+    bottom: 8px;
+
+    width: 75px;
+    height: 79px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #292a27 0%,
+            #20211f 40%,
+            #181916 100%
+        );
+
+    border-radius:
+        48%
+        48%
+        43%
+        43%;
+
+    box-shadow:
+        inset -7px -5px 0
+        rgba(0, 0, 0, 0.12),
+        inset 7px 5px 0
+        rgba(255, 255, 255, 0.035);
+}
+
+/* =========================================================
+   CREAM CHEST
+   ========================================================= */
+
+.cream-chest {
+    position: absolute;
+
+    width: 55px;
+    height: 63px;
+
+    left: 10px;
+    bottom: 1px;
+
+    background:
+        linear-gradient(
+            to bottom,
+            #f6efe4,
+            #e8dfd2
+        );
+
+    border-radius:
+        50%
+        50%
+        42%
+        42%;
+
+    opacity: 0.98;
+
+    z-index: 1;
+}
+
+/* =========================================================
+   EARS
+   ========================================================= */
+
+.ear {
+    position: absolute;
+
+    width: 27px;
+    height: 70px;
+
+    top: -56px;
+
+    border-radius:
+        55%
+        55%
+        45%
+        45%;
+
+    z-index: -1;
+}
+
+.maple-black-ear {
+    left: 7px;
+
+    background:
+        linear-gradient(
+            to bottom,
+            #20211f,
+            #292a27
+        );
+
+    transform:
+        rotate(-9deg);
+}
+
+.maple-light-ear {
+    right: 6px;
+
+    background:
+        linear-gradient(
+            to bottom,
+            #e7dfd3,
+            #f4eee5
+        );
+
+    transform:
+        rotate(8deg);
+}
+
+.maple-light-ear::after {
+    content: "";
+
+    position: absolute;
+
+    width: 12px;
+    height: 48px;
+
+    left: 8px;
+    top: 10px;
+
+    border-radius: 50%;
+
+    background: #d8a9a5;
+
+    opacity: 0.3;
+}
+
+/* =========================================================
+   HEAD
+   ========================================================= */
+
+.rabbit-head {
+    position: absolute;
+
+    width: 72px;
+    height: 67px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #f8f2e8,
+            #eee6da
+        );
+
+    border-radius: 50%;
+
+    left: 2px;
+    top: -40px;
+
+    z-index: 4;
+
+    box-shadow:
+        0 2px 4px
+        rgba(0, 0, 0, 0.04);
+}
+
+/* =========================================================
+   BLACK FACE PATCH
+   ========================================================= */
+
+.maple-face-patch {
+    position: absolute;
+
+    left: -2px;
+    top: -2px;
+
+    width: 36px;
+    height: 61px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #20211f,
+            #292a27
+        );
+
+    border-radius:
+        50%
+        18%
+        48%
+        55%;
+
+    transform:
+        rotate(-5deg);
+
+    z-index: 1;
+    opacity: 0.99;
+}
+
+/* =========================================================
+   TAN FOREHEAD / NOSE STRIPE
+   ========================================================= */
+
+.maple-tan-stripe {
+    position: absolute;
+
+    width: 15px;
+    height: 55px;
+
+    left: 29px;
+    top: -1px;
+
+    background:
+        linear-gradient(
+            to bottom,
+            #b98763,
+            #a97554 65%,
+            #c18c68
+        );
+
+    border-radius:
+        50%
+        45%
+        55%
+        55%;
+
+    transform:
+        rotate(1deg);
+
+    z-index: 2;
+    opacity: 0.96;
+}
+
+/* =========================================================
+   EYES
+   ========================================================= */
+
+.eye {
+    position: absolute;
+
+    width: 8px;
+    height: 8px;
+
+    border-radius: 50%;
+
+    background: #302d29;
+
+    top: 27px;
+
+    z-index: 5;
+
+    box-shadow:
+        0 1px 1px
+        rgba(0, 0, 0, 0.15);
+}
+
+.eye-left {
+    left: 18px;
+}
+
+.eye-right {
+    right: 17px;
+}
+
+.eye-glint {
+    position: absolute;
+
+    width: 2px;
+    height: 2px;
+
+    border-radius: 50%;
+
+    background: white;
+
+    left: 2px;
+    top: 1px;
+}
+
+/* =========================================================
+   CHEEKS
+   ========================================================= */
+
+.cheek {
+    position: absolute;
+
+    width: 14px;
+    height: 8px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(218, 160, 160, 0.22);
+
+    top: 39px;
+
+    z-index: 4;
+}
+
+.cheek-left {
+    left: 4px;
+}
+
+.cheek-right {
+    right: 4px;
+}
+
+/* =========================================================
+   NOSE
+   ========================================================= */
+
+.nose {
+    position: absolute;
+
+    width: 8px;
+    height: 6px;
+
+    background: #bc7d78;
+
+    border-radius: 50%;
+
+    left: 32px;
+    top: 38px;
+
+    z-index: 6;
+}
+
+/* =========================================================
+   MOUTH
+   ========================================================= */
+
+.mouth {
+    position: absolute;
+
+    width: 9px;
+    height: 5px;
+
+    left: 31px;
+    top: 44px;
+
+    border-bottom:
+        1.5px solid #80615a;
+
+    border-radius:
+        0
+        0
+        50%
+        50%;
+
+    z-index: 5;
+}
+
+/* =========================================================
+   FRONT PAWS
+   ========================================================= */
+
+.front-paw {
+    position: absolute;
+
+    width: 20px;
+    height: 25px;
+
+    background: #eee5d9;
+
+    border-radius: 50%;
+
+    bottom: 2px;
+
+    z-index: 4;
+}
+
+.paw-left {
+    left: 10px;
+}
+
+.paw-right {
+    right: 10px;
+}
+
+/* =========================================================
+   TAIL
+   ========================================================= */
+
+.rabbit-tail {
+    position: absolute;
+
+    width: 28px;
+    height: 28px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle at 35% 30%,
+            #fffdf8,
+            #eee6db
+        );
+
+    right: -13px;
+    bottom: 20px;
+
+    z-index: 5;
+
+    box-shadow:
+        0 2px 4px
+        rgba(0, 0, 0, 0.08);
+}
+
+/* =========================================================
+   MAPLE ANIMATIONS
+   ========================================================= */
+
+.rabbit.idle {
+    animation:
+        rabbitIdle
+        3.2s
+        ease-in-out
+        infinite;
+}
+
+.rabbit.hop {
+    animation:
+        rabbitHop
+        0.7s
+        ease-in-out
+        2;
+}
+
+.rabbit.sleeping {
+    animation:
+        rabbitSleep
+        4s
+        ease-in-out
+        infinite;
+}
+
+.rabbit.happy {
+    animation:
+        rabbitHappy
+        0.5s
+        ease-in-out
+        3;
+}
+
+@keyframes rabbitIdle {
+    0%,
+    100% {
+        transform:
+            translate(-50%, -50%)
+            translateY(0);
+    }
+
+    50% {
+        transform:
+            translate(-50%, -50%)
+            translateY(-3px);
+    }
+}
+
+@keyframes rabbitHop {
+    0% {
+        transform:
+            translate(-50%, -50%)
+            translateY(0)
+            scale(1);
+    }
+
+    50% {
+        transform:
+            translate(-50%, -50%)
+            translateY(-22px)
+            scale(1.04);
+    }
+
+    100% {
+        transform:
+            translate(-50%, -50%)
+            translateY(0)
+            scale(1);
+    }
+}
+
+@keyframes rabbitSleep {
+    0%,
+    100% {
+        transform:
+            translate(-50%, -50%)
+            rotate(0deg);
+    }
+
+    50% {
+        transform:
+            translate(-50%, -50%)
+            rotate(2deg);
+    }
+}
+
+@keyframes rabbitHappy {
+    0%,
+    100% {
+        transform:
+            translate(-50%, -50%)
+            translateY(0);
+    }
+
+    50% {
+        transform:
+            translate(-50%, -50%)
+            translateY(-14px)
+            rotate(-3deg);
+    }
+}
+
+/* =========================================================
+   MESSAGE BUBBLE
+   ========================================================= */
+
+.message-bubble {
+    position: absolute;
+
+    max-width: 220px;
+
+    padding:
+        12px
+        16px;
+
+    border-radius: 18px;
+
+    background:
+        rgba(255, 255, 255, 0.94);
+
+    box-shadow:
+        0 8px 25px
+        rgba(50, 70, 50, 0.12);
+
+    color: #40503f;
+
+    font-size: 14px;
+    line-height: 1.4;
+
+    z-index: 50;
+
+    opacity: 1;
+
+    transform:
+        translate(-50%, -100%);
+
+    transition:
+        opacity 0.3s ease,
+        transform 0.3s ease;
+
+    pointer-events: none;
+}
+
+.message-bubble::after {
+    content: "";
+
+    position: absolute;
+
+    bottom: -8px;
+    left: 50%;
+
+    transform:
+        translateX(-50%);
+
+    border-left:
+        8px solid transparent;
+
+    border-right:
+        8px solid transparent;
+
+    border-top:
+        8px solid rgba(255, 255, 255, 0.94);
+}
+
+.message-bubble.hidden {
+    opacity: 0;
+
+    transform:
+        translate(-50%, -90%);
+}
+
+/* =========================================================
+   HEART
+   ========================================================= */
+
+.heart-effect {
+    position: absolute;
+
+    font-size: 28px;
+
+    z-index: 100;
+    pointer-events: none;
+
+    animation:
+        heartFloat
+        1.2s
+        ease-out
+        forwards;
+}
+
+.heart-effect.hidden {
+    display: none;
+}
+
+@keyframes heartFloat {
+    0% {
+        opacity: 1;
+
+        transform:
+            translate(-50%, 0)
+            scale(0.7);
+    }
+
+    100% {
+        opacity: 0;
+
+        transform:
+            translate(-50%, -80px)
+            scale(1.2);
+    }
+}
+
+/* =========================================================
+   BOTTOM NAV
+   ========================================================= */
+
+.bottom-nav {
+    position: absolute;
+
+    left: 12px;
+    right: 12px;
+
+    bottom:
+        calc(
+            12px +
+            env(safe-area-inset-bottom)
+        );
+
+    height: 68px;
+
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    background:
+        rgba(255, 255, 255, 0.82);
+
+    backdrop-filter: blur(15px);
+
+    border-radius: 24px;
+
+    box-shadow:
+        0 10px 35px
+        rgba(50, 70, 50, 0.14);
+
+    z-index: 150;
+}
+
+.nav-button {
+    border: none;
+    background: transparent;
+
+    min-width: 80px;
+    height: 55px;
+
+    border-radius: 18px;
+
+    color: #6c7869;
+
+    font-size: 11px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    gap: 4px;
+
+    cursor: pointer;
+}
+
+.nav-button.active {
+    background: #e5eedf;
+    color: #465943;
+}
+
+.nav-icon {
+    font-size: 20px;
+}
+
+/* =========================================================
+   OVERLAY SCREENS
+   ========================================================= */
+
+.overlay-screen {
+    position: absolute;
+    inset: 0;
+
+    background: #f4f1e8;
+
+    z-index: 300;
+
+    overflow-y: auto;
+
+    padding:
+        calc(
+            75px +
+            env(safe-area-inset-top)
+        )
+        18px
+        calc(
+            100px +
+            env(safe-area-inset-bottom)
+        );
+}
+
+.overlay-screen.hidden {
+    display: none;
+}
+
+.screen-header {
+    display: flex;
+
+    align-items: center;
+    gap: 15px;
+
+    margin-bottom: 22px;
+}
+
+.screen-header h2 {
+    font-size: 25px;
+    font-weight: 600;
+}
+
+.screen-subtitle {
+    color: #7b8578;
+
+    font-size: 13px;
+
+    margin-top: 3px;
+}
+
+.back-button {
+    width: 40px;
+    height: 40px;
+
+    border: none;
+    border-radius: 50%;
+
+    background: #e7e4da;
+
+    font-size: 22px;
+
+    flex-shrink: 0;
+    cursor: pointer;
+}
+
+/* =========================================================
+   MEMORY CARD
+   ========================================================= */
+
+.memory-card {
+    background: white;
+
+    border-radius: 22px;
+
+    padding: 20px;
+
+    text-align: center;
+
+    box-shadow:
+        0 5px 20px
+        rgba(50, 60, 45, 0.07);
+
+    margin-bottom: 25px;
+}
+
+.memory-placeholder {
+    width: 70px;
+    height: 70px;
+
+    margin:
+        0 auto
+        14px;
+
+    border-radius: 22px;
+
+    background: #e5ecdf;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 36px;
+}
+
+.memory-card h3 {
+    font-size: 17px;
+    margin-bottom: 7px;
+}
+
+.memory-card p {
+    color: #778071;
+
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+/* =========================================================
+   PHOTO UPLOAD
+   ========================================================= */
+
+.photo-upload-button {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    min-height: 52px;
+
+    margin-top: 18px;
+
+    border-radius: 16px;
+
+    background: #e5eedf;
+    color: #465943;
+
+    font-size: 15px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    -webkit-tap-highlight-color: transparent;
+}
+
+.photo-upload-button:active {
+    transform: scale(0.98);
+}
+
+/* =========================================================
+   UPLOAD PANEL
+   ========================================================= */
+
+.memory-upload-panel {
+    background: white;
+
+    border-radius: 22px;
+
+    padding: 18px;
+
+    margin-bottom: 25px;
+
+    box-shadow:
+        0 5px 20px
+        rgba(50, 60, 45, 0.07);
+}
+
+.memory-upload-panel.hidden {
+    display: none;
+}
+
+.upload-preview-wrapper {
+    width: 100%;
+    max-height: 320px;
+
+    overflow: hidden;
+
+    border-radius: 18px;
+
+    background: #e5ecdf;
+
+    margin-bottom: 16px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.memory-preview {
+    width: 100%;
+    max-height: 320px;
+
+    object-fit: cover;
+    display: block;
+}
+
+.input-label {
+    display: block;
+
+    color: #53604f;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    margin-bottom: 13px;
+}
+
+.memory-input {
+    display: block;
+
+    width: 100%;
+
+    margin-top: 7px;
+
+    border:
+        1px solid #dfe5da;
+
+    background: #f7f8f4;
+    color: #3f4b3c;
+
+    border-radius: 12px;
+
+    padding: 12px;
+
+    font-family: inherit;
+    font-size: 14px;
+
+    outline: none;
+}
+
+.memory-input:focus {
+    border-color: #9caf91;
+}
+
+.upload-actions {
+    display: flex;
+
+    gap: 10px;
+    align-items: center;
+
+    margin-top: 5px;
+}
+
+.upload-actions .primary-button {
+    flex: 1;
+}
+
+.primary-button {
+    border: none;
+
+    background: #8faa80;
+    color: white;
+
+    border-radius: 14px;
+
+    padding:
+        11px
+        15px;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    cursor: pointer;
+}
+
+.secondary-action-button {
+    border: none;
+
+    background: #edf1e9;
+    color: #657160;
+
+    border-radius: 14px;
+
+    padding:
+        12px
+        15px;
+
+    font-size: 13px;
+
+    cursor: pointer;
+}
+
+.upload-status {
+    min-height: 18px;
+
+    margin-top: 10px;
+
+    text-align: center;
+
+    color: #71806c;
+
+    font-size: 12px;
+}
+
+/* =========================================================
+   MEMORY GALLERY
+   ========================================================= */
+
+.memories-section-header {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 12px;
+}
+
+.memories-section-header h3 {
+    font-size: 18px;
+}
+
+.memory-count {
+    min-width: 26px;
+    height: 26px;
+
+    padding:
+        0
+        7px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 13px;
+
+    background: #e5ecdf;
+    color: #5e6c59;
+
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.memory-gallery {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 16px;
+
+    margin-top: 16px;
+}
+
+.memory-photo-card {
+    background: white;
+
+    border-radius: 22px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 5px 20px
+        rgba(50, 60, 45, 0.08);
+}
+
+.memory-photo {
+    display: block;
+
+    width: 100%;
+    height: auto;
+    max-height: 420px;
+
+    object-fit: cover;
+}
+
+.memory-photo-details {
+    padding: 16px;
+}
+
+.memory-photo-date {
+    color: #899286;
+
+    font-size: 12px;
+
+    margin-bottom: 6px;
+}
+
+.memory-photo-caption {
+    color: #465143;
+
+    font-size: 15px;
+    line-height: 1.4;
+}
+
+.memory-delete-button {
+    margin-top: 12px;
+
+    border: none;
+
+    background: #f2e8e5;
+    color: #8b625b;
+
+    border-radius: 12px;
+
+    padding:
+        9px
+        13px;
+
+    font-size: 12px;
+
+    cursor: pointer;
+}
+
+.empty-memories {
+    background:
+        rgba(255, 255, 255, 0.65);
+
+    border-radius: 22px;
+
+    padding:
+        35px
+        20px;
+
+    text-align: center;
+
+    color: #74806f;
+}
+
+.empty-memory-icon {
+    font-size: 45px;
+
+    margin-bottom: 10px;
+}
+
+.empty-memories h3 {
+    color: #53604f;
+
+    font-size: 16px;
+
+    margin-bottom: 7px;
+}
+
+.empty-memories p {
+    font-size: 13px;
+
+    line-height: 1.5;
+}
+
+/* =========================================================
+   PHOTO VIEWER
+   ========================================================= */
+
+.photo-viewer {
+    position: absolute;
+    inset: 0;
+
+    z-index: 700;
+
+    background:
+        rgba(25, 32, 25, 0.94);
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    padding:
+        40px
+        18px
+        25px;
+}
+
+.photo-viewer.hidden {
+    display: none;
+}
+
+.photo-viewer img {
+    max-width: 100%;
+    max-height: 78vh;
+
+    object-fit: contain;
+
+    border-radius: 12px;
+
+    box-shadow:
+        0 20px 60px
+        rgba(0, 0, 0, 0.3);
+}
+
+.photo-viewer-close {
+    position: absolute;
+
+    top:
+        calc(
+            18px +
+            env(safe-area-inset-top)
+        );
+
+    right: 18px;
+
+    width: 42px;
+    height: 42px;
+
+    border: none;
+    border-radius: 50%;
+
+    background:
+        rgba(255, 255, 255, 0.15);
+
+    color: white;
+
+    font-size: 30px;
+    line-height: 1;
+
+    cursor: pointer;
+}
+
+.viewer-caption {
+    color: white;
+
+    text-align: center;
+
+    font-size: 14px;
+
+    margin-top: 15px;
+
+    max-width: 90%;
+}
+
+/* =========================================================
+   SETTINGS
+   ========================================================= */
+
+.settings-content {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 12px;
+}
+
+.setting-card {
+    background: white;
+
+    border-radius: 20px;
+
+    padding: 18px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 15px;
+}
+
+.setting-card strong {
+    display: block;
+
+    margin-bottom: 5px;
+}
+
+.setting-card p {
+    color: #7b8578;
+
+    font-size: 13px;
+
+    line-height: 1.4;
+}
+
+.setting-card select {
+    border: none;
+
+    background: #edf1e9;
+
+    padding:
+        9px
+        10px;
+
+    border-radius: 10px;
+
+    color: #465943;
+
+    max-width: 130px;
+}
+
+.setting-value {
+    color: #71806c;
+
+    font-size: 13px;
+}
+
+/* =========================================================
+   TOGGLE
+   ========================================================= */
+
+.toggle {
+    position: relative;
+
+    width: 50px;
+    height: 30px;
+
+    display: block;
+}
+
+.toggle input {
+    display: none;
+}
+
+.slider {
+    position: absolute;
+    inset: 0;
+
+    border-radius: 30px;
+
+    background: #d5d9d2;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.slider::before {
+    content: "";
+
+    position: absolute;
+
+    width: 24px;
+    height: 24px;
+
+    left: 3px;
+    top: 3px;
+
+    border-radius: 50%;
+
+    background: white;
+
+    transition: 0.2s;
+
+    box-shadow:
+        0 2px 5px
+        rgba(0, 0, 0, 0.15);
+}
+
+.toggle input:checked + .slider {
+    background: #8faa80;
+}
+
+.toggle input:checked + .slider::before {
+    transform: translateX(20px);
+}
+
+/* =========================================================
+   FEED MODAL
+   ========================================================= */
+
+.modal {
+    position: absolute;
+    inset: 0;
+
+    z-index: 500;
+
+    background:
+        rgba(40, 50, 40, 0.25);
+
+    backdrop-filter: blur(5px);
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+}
+
+.modal.hidden {
+    display: none;
+}
+
+.modal-card {
+    width: 100%;
+    max-width: 360px;
+
+    background: #faf8f2;
+
+    border-radius: 28px;
+
+    padding: 28px;
+
+    text-align: center;
+
+    box-shadow:
+        0 20px 60px
+        rgba(20, 30, 20, 0.2);
+}
+
+.modal-rabbit {
+    font-size: 55px;
+
+    margin-bottom: 12px;
+}
+
+.modal-card h2 {
+    font-size: 23px;
+
+    margin-bottom: 8px;
+}
+
+.modal-card > p {
+    color: #798177;
+
+    font-size: 14px;
+
+    margin-bottom: 22px;
+}
+
+.food-options {
+    display: flex;
+
+    justify-content: center;
+
+    gap: 10px;
+
+    margin-bottom: 20px;
+}
+
+.food-button {
+    border: none;
+
+    background: #edf2e8;
+
+    border-radius: 18px;
+
+    width: 85px;
+    height: 85px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 4px;
+
+    font-size: 26px;
+
+    cursor: pointer;
+}
+
+.food-button span {
+    font-size: 11px;
+
+    color: #63705e;
+}
+
+.secondary-button {
+    border: none;
+
+    background: transparent;
+
+    color: #737c70;
+
+    padding: 10px;
+
+    font-size: 14px;
+
+    cursor: pointer;
+}
+
+/* =========================================================
+   NIGHT MODE
+   ========================================================= */
+
+body.night .sky {
+    background:
+        linear-gradient(
+            to bottom,
+            #253747,
+            #405660 62%,
+            #5d7167
+        );
+}
+
+body.night .sun {
+    opacity: 0;
+}
+
+body.night .moon {
+    opacity: 1;
+}
+
+body.night .cloud {
+    opacity: 0.08;
+}
+
+body.night .bird {
+    opacity: 0.12;
+}
+
+body.night .garden {
+    background:
+        linear-gradient(
+            to bottom,
+            #61785a,
+            #4c6348
+        );
+}
+
+body.night .garden-light {
+    opacity: 0.25;
+}
+
+body.night .tree-crown {
+    filter: brightness(0.72);
+}
+
+body.night .duck-toy {
+    filter: brightness(0.72);
+}
+
+body.night .rabbit-teddy-toy {
+    filter: brightness(0.76);
+}
+
+/* =========================================================
+   ACCESSIBILITY
+   ========================================================= */
+
+button {
+    -webkit-tap-highlight-color: transparent;
+}
+
+button:active {
+    transform: scale(0.96);
+}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-height: 680px) {
+    .garden {
+        height: 46%;
+    }
+
+    .bottom-nav {
+        height: 60px;
+    }
+
+    .rabbit {
+        transform:
+            translate(-50%, -50%)
+            scale(0.9);
+    }
+
+    .memory-gallery {
+        gap: 9px;
+    }
+
+    .memory-card {
+        padding: 14px;
+    }
+}
+
+@media (max-width: 360px) {
+    .memory-card {
+        padding: 16px;
+    }
+
+    .bottom-nav {
+        left: 8px;
+        right: 8px;
+    }
+
+    .nav-button {
+        min-width: 70px;
+    }
+
+    .duck-toy {
+        left: 20%;
+    }
+
+    .rabbit-teddy-toy {
+        right: 18%;
+    }
+}

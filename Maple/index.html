@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+```
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+>
+
+<meta name="theme-color" content="#dfead7">
+
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Maple's Garden">
+
+<title>Maple's Garden 🍁</title>
+
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="assets/icon.svg">
+<link rel="stylesheet" href="styles.css">
+```
+
+</head>
+
+<body>
+
+<div id="app">
+
+```
+<!-- TOP BAR -->
+<header class="top-bar">
+
+    <div class="app-title">
+        <span class="maple-leaf">🍁</span>
+        <span>Maple's Garden</span>
+    </div>
+
+    <button
+        id="settingsButton"
+        class="icon-button"
+        aria-label="Settings"
+    >
+        ⚙️
+    </button>
+
+</header>
+
+
+<!-- MAIN WORLD -->
+<main id="world">
+
+    <!-- SKY -->
+    <div class="sky">
+
+        <div id="sun" class="sun"></div>
+        <div id="moon" class="moon"></div>
+
+        <div class="cloud cloud-one"></div>
+        <div class="cloud cloud-two"></div>
+        <div class="cloud cloud-three"></div>
+
+        <div class="bird bird-one">•</div>
+        <div class="bird bird-two">•</div>
+
+    </div>
+
+
+    <!-- DISTANT LANDSCAPE -->
+    <div class="distant-hills">
+
+        <div class="hill hill-one"></div>
+        <div class="hill hill-two"></div>
+        <div class="hill hill-three"></div>
+
+    </div>
+
+
+    <!-- TREES -->
+    <div class="trees">
+
+        <div class="tree tree-one">
+            <div class="tree-crown"></div>
+            <div class="tree-trunk"></div>
+        </div>
+
+        <div class="tree tree-two">
+            <div class="tree-crown"></div>
+            <div class="tree-trunk"></div>
+        </div>
+
+        <div class="tree tree-three">
+            <div class="tree-crown"></div>
+            <div class="tree-trunk"></div>
+        </div>
+
+    </div>
+
+
+    <!-- GARDEN -->
+    <div class="garden">
+
+        <div class="garden-light"></div>
+        <div class="grass-layer"></div>
+
+
+        <!-- GRASS TUFTS -->
+        <div class="grass-tuft tuft-one">⌁</div>
+        <div class="grass-tuft tuft-two">⌁</div>
+        <div class="grass-tuft tuft-three">⌁</div>
+        <div class="grass-tuft tuft-four">⌁</div>
+        <div class="grass-tuft tuft-five">⌁</div>
+
+
+        <!-- FLOWERS -->
+        <div class="flower flower-one"><span></span></div>
+        <div class="flower flower-two"><span></span></div>
+        <div class="flower flower-three"><span></span></div>
+        <div class="flower flower-four"><span></span></div>
+        <div class="flower flower-five"><span></span></div>
+        <div class="flower flower-six"><span></span></div>
+
+
+        <!-- GARDEN OBJECTS -->
+
+        <div
+            class="garden-object carrot"
+            title="Maple's carrot"
+        >
+            🥕
+        </div>
+
+        <div class="garden-object basket">
+            🧺
+        </div>
+
+        <div class="garden-stone stone-one"></div>
+        <div class="garden-stone stone-two"></div>
+        <div class="garden-stone stone-three"></div>
+
+
+        <!-- =====================================================
+             MEEPS' SPECIAL TOYS
+             Blue long-necked duck
+             White and black rabbit teddy
+             ===================================================== -->
+
+        <div
+            class="special-toy duck-toy"
+            id="duckToy"
+            aria-hidden="true"
+        >
+
+            <div class="duck-body"></div>
+
+            <div class="duck-neck"></div>
+
+            <div class="duck-head">
+
+                <div class="duck-eye"></div>
+
+                <div class="duck-beak"></div>
+
+            </div>
+
+            <div class="duck-wing"></div>
+
+        </div>
+
+
+        <div
+            class="special-toy rabbit-teddy-toy"
+            id="rabbitTeddyToy"
+            aria-hidden="true"
+        >
+
+            <div class="teddy-body"></div>
+
+            <div class="teddy-head">
+
+                <div class="teddy-ear-black"></div>
+
+                <div class="teddy-ear-white"></div>
+
+                <div class="teddy-face-patch"></div>
+
+                <div class="teddy-eye teddy-eye-left"></div>
+
+                <div class="teddy-eye teddy-eye-right"></div>
+
+                <div class="teddy-nose"></div>
+
+            </div>
+
+            <div class="teddy-paw teddy-paw-left"></div>
+
+            <div class="teddy-paw teddy-paw-right"></div>
+
+        </div>
+
+
+        <!-- =====================================================
+             MEEPS
+             ===================================================== -->
+
+        <div
+            id="rabbit"
+            class="rabbit idle"
+            role="button"
+            tabindex="0"
+            aria-label="Meeps"
+        >
+
+            <div class="rabbit-shadow"></div>
+
+            <div class="rabbit-body">
+
+                <!-- EARS -->
+                <div class="ear maple-black-ear"></div>
+                <div class="ear maple-light-ear"></div>
+
+
+                <!-- HEAD -->
+                <div class="rabbit-head">
+
+                    <!-- BLACK FACE PATCH -->
+                    <div class="maple-face-patch"></div>
+
+
+                    <!-- TAN FOREHEAD STRIPE -->
+                    <div class="maple-tan-stripe"></div>
+
+
+                    <!-- EYES -->
+                    <div class="eye eye-left">
+                        <span class="eye-glint"></span>
+                    </div>
+
+                    <div class="eye eye-right">
+                        <span class="eye-glint"></span>
+                    </div>
+
+
+                    <!-- CHEEKS -->
+                    <div class="cheek cheek-left"></div>
+                    <div class="cheek cheek-right"></div>
+
+
+                    <!-- NOSE -->
+                    <div class="nose"></div>
+
+
+                    <!-- MOUTH -->
+                    <div class="mouth"></div>
+
+                </div>
+
+
+                <!-- CHEST PATCH -->
+                <div class="cream-chest"></div>
+
+
+                <!-- FRONT PAWS -->
+                <div class="front-paw paw-left"></div>
+                <div class="front-paw paw-right"></div>
+
+
+                <!-- TAIL -->
+                <div class="rabbit-tail"></div>
+
+            </div>
+
+        </div>
+
+
+        <!-- MESSAGE -->
+        <div
+            id="messageBubble"
+            class="message-bubble hidden"
+        >
+
+            <span id="messageText"></span>
+
+        </div>
+
+
+        <!-- HEART -->
+        <div
+            id="heartEffect"
+            class="heart-effect hidden"
+        >
+            ❤️
+        </div>
+
+    </div>
+
+</main>
+
+
+<!-- BOTTOM NAV -->
+<nav class="bottom-nav">
+
+    <button
+        id="homeButton"
+        class="nav-button active"
+    >
+        <span class="nav-icon">🏡</span>
+        <span>Home</span>
+    </button>
+
+
+    <button
+        id="feedButton"
+        class="nav-button"
+    >
+        <span class="nav-icon">🥕</span>
+        <span>Feed</span>
+    </button>
+
+
+    <button
+        id="memoriesButton"
+        class="nav-button"
+    >
+        <span class="nav-icon">❤️</span>
+        <span>Memories</span>
+    </button>
+
+</nav>
+
+
+<!-- =========================================================
+     MEMORIES SCREEN
+     ========================================================= -->
+
+<section
+    id="memoriesScreen"
+    class="overlay-screen hidden"
+>
+
+    <div class="screen-header">
+
+        <button
+            id="closeMemoriesButton"
+            class="back-button"
+            aria-label="Back"
+        >
+            ←
+        </button>
+
+        <div>
+
+            <h2>Maple's Memories</h2>
+
+            <p class="screen-subtitle">
+                Little moments that stay with us.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="memory-card">
+
+        <div
+            class="memory-placeholder"
+            id="memoryPlaceholder"
+        >
+            🐰
+        </div>
+
+
+        <h3>Keep a little piece of Maple</h3>
+
+
+        <p>
+            Add favourite photos and little moments
+            with Maple here.
+        </p>
+
+
+        <label
+            for="memoryFileInput"
+            class="photo-upload-button"
+        >
+            📸 Add a Memory
+        </label>
+
+
+        <input
+            type="file"
+            id="memoryFileInput"
+            accept="image/*"
+            capture="environment"
+            hidden
+        >
+
+    </div>
+
+
+    <!-- UPLOAD PANEL -->
+    <div
+        id="memoryUploadPanel"
+        class="memory-upload-panel hidden"
+    >
+
+        <div class="upload-preview-wrapper">
+
+            <img
+                id="memoryPreview"
+                class="memory-preview"
+                alt="Memory preview"
+            >
+
+        </div>
+
+
+        <label class="input-label">
+
+            Caption
+
+            <input
+                type="text"
+                id="memoryCaption"
+                class="memory-input"
+                maxlength="100"
+                placeholder="A little moment with Maple..."
+            >
+
+        </label>
+
+
+        <label class="input-label">
+
+            Date
+
+            <input
+                type="date"
+                id="memoryDate"
+                class="memory-input"
+            >
+
+        </label>
+
+
+        <div class="upload-actions">
+
+            <button
+                id="cancelMemoryButton"
+                class="secondary-action-button"
+            >
+                Cancel
+            </button>
+
+
+            <button
+                id="saveMemoryButton"
+                class="primary-button"
+            >
+                Save Memory ❤️
+            </button>
+
+        </div>
+
+
+        <p
+            id="uploadStatus"
+            class="upload-status"
+        ></p>
+
+    </div>
+
+
+    <!-- MEMORY GALLERY -->
+    <div class="memories-section">
+
+        <div class="memories-section-header">
+
+            <h3>Your Memories</h3>
+
+            <span
+                id="memoryCount"
+                class="memory-count"
+            >
+                0
+            </span>
+
+        </div>
+
+
+        <div
+            id="memoryGallery"
+            class="memory-gallery"
+        ></div>
+
+
+        <div
+            id="emptyMemories"
+            class="empty-memories"
+        >
+
+            <div class="empty-memory-icon">
+                🐰
+            </div>
+
+
+            <h3>Your memories will live here</h3>
+
+
+            <p>
+                Add your first photo of Maple
+                to start filling the garden.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     PHOTO VIEWER
+     ========================================================= -->
+
+<div
+    id="photoViewer"
+    class="photo-viewer hidden"
+>
+
+    <button
+        id="closePhotoViewer"
+        class="photo-viewer-close"
+        aria-label="Close photo"
+    >
+        ×
+    </button>
+
+
+    <img
+        id="viewerImage"
+        src=""
+        alt="Maple memory"
+    >
+
+
+    <div
+        id="viewerCaption"
+        class="viewer-caption"
+    ></div>
+
+</div>
+
+
+<!-- =========================================================
+     SETTINGS
+     ========================================================= -->
+
+<section
+    id="settingsScreen"
+    class="overlay-screen hidden"
+>
+
+    <div class="screen-header">
+
+        <button
+            id="closeSettingsButton"
+            class="back-button"
+            aria-label="Back"
+        >
+            ←
+        </button>
+
+
+        <h2>Settings</h2>
+
+    </div>
+
+
+    <div class="settings-content">
+
+        <div class="setting-card">
+
+            <div>
+
+                <strong>Maple's visits</strong>
+
+                <p>
+                    How often Maple interacts with you.
+                </p>
+
+            </div>
+
+
+            <select id="visitFrequency">
+
+                <option value="often">
+                    Often
+                </option>
+
+                <option
+                    value="normal"
+                    selected
+                >
+                    Occasionally
+                </option>
+
+                <option value="rare">
+                    Rarely
+                </option>
+
+                <option value="off">
+                    Off
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <div class="setting-card">
+
+            <div>
+
+                <strong>Sound</strong>
+
+                <p>
+                    Little garden sounds.
+                </p>
+
+            </div>
+
+
+            <label class="toggle">
+
+                <input
+                    type="checkbox"
+                    id="soundToggle"
+                >
+
+                <span class="slider"></span>
+
+            </label>
+
+        </div>
+
+
+        <div class="setting-card">
+
+            <div>
+
+                <strong>Maple's personality</strong>
+
+                <p>
+                    Gentle, curious and always ready
+                    for a hop.
+                </p>
+
+            </div>
+
+
+            <span class="setting-value">
+                Gentle
+            </span>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     FEED MODAL
+     ========================================================= -->
+
+<div
+    id="feedModal"
+    class="modal hidden"
+>
+
+    <div class="modal-card">
+
+        <div class="modal-rabbit">
+            🐰
+        </div>
+
+
+        <h2>
+            Give Maple a snack?
+        </h2>
+
+
+        <p>
+            Choose something for Maple.
+        </p>
+
+
+        <div class="food-options">
+
+            <button
+                class="food-button"
+                data-food="carrot"
+            >
+                🥕
+                <span>Carrot</span>
+            </button>
+
+
+            <button
+                class="food-button"
+                data-food="grass"
+            >
+                🌿
+                <span>Grass</span>
+            </button>
+
+
+            <button
+                class="food-button"
+                data-food="apple"
+            >
+                🍎
+                <span>Apple</span>
+            </button>
+
+        </div>
+
+
+        <button
+            id="closeFeedButton"
+            class="secondary-button"
+        >
+            Maybe later
+        </button>
+
+    </div>
+
+</div>
+```
+
+</div>
+
+<script src="app.js"></script>
+
+</body>
+</html>

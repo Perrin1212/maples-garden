@@ -1,0 +1,152 @@
+
+<svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 512 512"
+>
+
+    <!-- Background -->
+
+    <rect
+        width="512"
+        height="512"
+        rx="120"
+        fill="#dfead7"
+    />
+
+
+    <!-- Ground -->
+
+    <ellipse
+        cx="256"
+        cy="390"
+        rx="145"
+        ry="35"
+        fill="#9ab58f"
+        opacity="0.45"
+    />
+
+
+    <!-- Maple's body -->
+
+    <ellipse
+        cx="256"
+        cy="285"
+        rx="125"
+        ry="135"
+        fill="#f4eee5"
+    />
+
+
+    <!-- Left black ear -->
+
+    <ellipse
+        cx="205"
+        cy="115"
+        rx="42"
+        ry="110"
+        fill="#252522"
+    />
+
+
+    <!-- Right white ear -->
+
+    <ellipse
+        cx="307"
+        cy="115"
+        rx="42"
+        ry="110"
+        fill="#f4eee5"
+    />
+
+
+    <!-- Head -->
+
+    <ellipse
+        cx="256"
+        cy="275"
+        rx="105"
+        ry="95"
+        fill="#f7f1e8"
+    />
+
+
+    <!-- Maple's black facial patch -->
+
+    <path
+        d="
+            M155 195
+            C190 170
+             225 180
+             235 210
+            C245 245
+             230 300
+             205 350
+            C175 330
+             155 285
+             155 195
+            Z
+        "
+        fill="#252522"
+    />
+
+
+    <!-- Eyes -->
+
+    <circle
+        cx="213"
+        cy="270"
+        r="12"
+        fill="#453f3a"
+    />
+
+    <circle
+        cx="299"
+        cy="270"
+        r="12"
+        fill="#453f3a"
+    />
+
+
+    <!-- Nose -->
+
+    <ellipse
+        cx="256"
+        cy="302"
+        rx="11"
+        ry="8"
+        fill="#c88787"
+    />
+
+
+    <!-- Tail -->
+
+    <circle
+        cx="363"
+        cy="345"
+        r="42"
+        fill="#fffaf2"
+    />
+
+
+    <!-- Maple leaf -->
+
+    <path
+        d="
+            M410 70
+            C455 78
+             470 110
+             450 140
+            C432 166
+             405 158
+             390 138
+            C375 118
+             380 88
+             410 70
+            Z
+        "
+        fill="#c78383"
+        opacity="0.9"
+    />
+
+</svg>
+

@@ -1,0 +1,22 @@
+
+{
+    "name": "Maple's Garden",
+    "short_name": "Maple",
+    "description": "A little place for Maple, memories and special moments.",
+    "start_url": "./",
+    "scope": "./",
+    "display": "standalone",
+    "orientation": "portrait",
+    "background_color": "#dfead7",
+    "theme_color": "#dfead7",
+    "id": "./",
+    "icons": [
+        {
+            "src": "assets/icon.svg",
+            "sizes": "any",
+            "type": "image/svg+xml",
+            "purpose": "any maskable"
+        }
+    ]
+}
+
