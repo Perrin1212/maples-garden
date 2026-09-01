@@ -95,6 +95,13 @@ let audioContext = null;
 
 
 /* =====================================================
+   FIRST MAPLE CLICK
+   ===================================================== */
+
+let firstMapleClick = true;
+
+
+/* =====================================================
    STORAGE
    ===================================================== */
 
@@ -1094,13 +1101,27 @@ rabbit.addEventListener(
         ];
 
 
-        const message =
-            messages[
-                Math.floor(
-                    Math.random() *
-                    messages.length
-                )
-            ];
+        let message;
+
+
+        if (firstMapleClick) {
+
+            message =
+                "Hello baby Meeps <3";
+
+            firstMapleClick = false;
+
+        } else {
+
+            message =
+                messages[
+                    Math.floor(
+                        Math.random() *
+                        messages.length
+                    )
+                ];
+
+        }
 
 
         showMessage(
@@ -1137,6 +1158,7 @@ rabbit.addEventListener(
 
     }
 );
+
 
 /* =====================================================
    KEYBOARD ACCESS
