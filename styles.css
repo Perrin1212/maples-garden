@@ -1,2862 +1,321 @@
-/* =========================================================
-   MAPLE'S GARDEN
-   Visual Style v2 — Clean CSS
-   ========================================================= */
-
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
-html,
-body {
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-}
-
-body {
-    font-family:
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        sans-serif;
-
-    background: #dfead7;
-    color: #344234;
-    -webkit-font-smoothing: antialiased;
-    user-select: none;
-}
-
-/* =========================================================
-   APP
-   ========================================================= */
-
-#app {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    background: #dfead7;
-}
-
-/* =========================================================
-   TOP BAR
-   ========================================================= */
-
-.top-bar {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 70px;
-
-    padding:
-        env(safe-area-inset-top)
-        18px
-        0
-        18px;
-
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    z-index: 100;
-}
-
-.app-title {
-    display: flex;
-    align-items: center;
-    gap: 7px;
-
-    font-size: 17px;
-    font-weight: 600;
-    color: #435441;
-
-    text-shadow:
-        0 1px 1px rgba(255, 255, 255, 0.4);
-}
-
-.maple-leaf {
-    display: inline-block;
-    font-size: 18px;
-    transform: rotate(-8deg);
-}
-
-.icon-button {
-    width: 42px;
-    height: 42px;
-
-    border: none;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.58);
-
-    font-size: 18px;
-    cursor: pointer;
-
-    backdrop-filter: blur(10px);
-
-    box-shadow:
-        0 4px 15px rgba(50, 70, 50, 0.08);
-}
-
-/* =========================================================
-   WORLD
-   ========================================================= */
-
-#world {
-    position: absolute;
-    inset: 0;
-    overflow: hidden;
-}
-
-/* =========================================================
-   SKY
-   ========================================================= */
-
-.sky {
-    position: absolute;
-    inset: 0;
-    height: 66%;
-
-    background:
-        linear-gradient(
-            to bottom,
-            #c6dfed 0%,
-            #d5e8df 48%,
-            #e2ead7 100%
-        );
-
-    transition: background 2s ease;
-}
-
-/* =========================================================
-   SUN
-   ========================================================= */
-
-.sun {
-    position: absolute;
-
-    width: 76px;
-    height: 76px;
-    border-radius: 50%;
-
-    background:
-        radial-gradient(
-            circle,
-            #f9e7aa 0%,
-            #f4d88b 65%,
-            #efce78 100%
-        );
-
-    top: 88px;
-    right: 48px;
-
-    box-shadow:
-        0 0 25px rgba(244, 216, 139, 0.45),
-        0 0 60px rgba(244, 216, 139, 0.2);
-}
-
-/* =========================================================
-   MOON
-   ========================================================= */
-
-.moon {
-    position: absolute;
-
-    width: 58px;
-    height: 58px;
-    border-radius: 50%;
-
-    background: #f7f2d9;
-
-    top: 92px;
-    right: 58px;
-
-    opacity: 0;
-    transition: opacity 1s ease;
-
-    box-shadow:
-        0 0 25px rgba(245, 241, 217, 0.3);
-}
-
-.moon::after {
-    content: "";
-
-    position: absolute;
-    width: 58px;
-    height: 58px;
-    border-radius: 50%;
-
-    background: #314754;
-
-    left: 18px;
-    top: -7px;
-}
-
-/* =========================================================
-   CLOUDS
-   ========================================================= */
-
-.cloud {
-    position: absolute;
-
-    width: 100px;
-    height: 31px;
-    border-radius: 30px;
-
-    background: rgba(255, 255, 255, 0.42);
-    filter: blur(0.2px);
-}
-
-.cloud::before,
-.cloud::after {
-    content: "";
-
-    position: absolute;
-
-    background: rgba(255, 255, 255, 0.42);
-    border-radius: 50%;
-}
-
-.cloud::before {
-    width: 45px;
-    height: 45px;
-
-    left: 18px;
-    bottom: 7px;
-}
-
-.cloud::after {
-    width: 34px;
-    height: 34px;
-
-    right: 12px;
-    bottom: 5px;
-}
-
-.cloud-one {
-    top: 128px;
-    left: -100px;
-
-    animation:
-        cloudMove
-        38s
-        linear
-        infinite;
-}
-
-.cloud-two {
-    top: 205px;
-    right: -120px;
-
-    transform: scale(0.72);
-
-    animation:
-        cloudMoveReverse
-        48s
-        linear
-        infinite;
-}
-
-.cloud-three {
-    top: 270px;
-    left: 35%;
-
-    transform: scale(0.55);
-    opacity: 0.35;
-
-    animation:
-        cloudFloat
-        30s
-        ease-in-out
-        infinite;
-}
-
-@keyframes cloudMove {
-    from {
-        transform: translateX(-100px);
-    }
-
-    to {
-        transform: translateX(520px);
-    }
-}
-
-@keyframes cloudMoveReverse {
-    from {
-        transform: translateX(100px);
-    }
-
-    to {
-        transform: translateX(-520px);
-    }
-}
-
-@keyframes cloudFloat {
-    0%,
-    100% {
-        transform:
-            translateX(-15px)
-            scale(0.55);
-    }
-
-    50% {
-        transform:
-            translateX(15px)
-            scale(0.55);
-    }
-}
-
-/* =========================================================
-   BIRDS
-   ========================================================= */
-
-.bird {
-    position: absolute;
-
-    width: 18px;
-    height: 8px;
-
-    color: #718478;
-    font-size: 18px;
-    opacity: 0.45;
-
-    transform: rotate(-10deg);
-}
-
-.bird::before,
-.bird::after {
-    content: "";
-
-    position: absolute;
-
-    width: 9px;
-    height: 5px;
-
-    border-top:
-        2px solid #718478;
-
-    border-radius: 50%;
-}
-
-.bird::before {
-    left: 0;
-}
-
-.bird::after {
-    right: 0;
-}
-
-.bird-one {
-    top: 180px;
-    left: 27%;
-
-    animation:
-        birdFly
-        18s
-        linear
-        infinite;
-}
-
-.bird-two {
-    top: 235px;
-    left: 55%;
-
-    transform: scale(0.7);
-
-    animation:
-        birdFly
-        23s
-        linear
-        infinite;
-}
-
-@keyframes birdFly {
-    from {
-        transform:
-            translateX(-50px)
-            translateY(0);
-    }
-
-    50% {
-        transform:
-            translateX(70px)
-            translateY(-8px);
-    }
-
-    to {
-        transform:
-            translateX(180px)
-            translateY(0);
-    }
-}
-
-/* =========================================================
-   DISTANT HILLS
-   ========================================================= */
-
-.distant-hills {
-    position: absolute;
-
-    left: 0;
-    right: 0;
-    top: 34%;
-    height: 25%;
-
-    z-index: 2;
-    pointer-events: none;
-}
-
-.hill {
-    position: absolute;
-
-    bottom: 0;
-
-    border-radius: 50% 50% 0 0;
-    opacity: 0.45;
-}
-
-.hill-one {
-    left: -15%;
-
-    width: 65%;
-    height: 110px;
-
-    background: #a9c39d;
-}
-
-.hill-two {
-    left: 30%;
-
-    width: 65%;
-    height: 145px;
-
-    background: #a2bd97;
-}
-
-.hill-three {
-    right: -20%;
-
-    width: 55%;
-    height: 120px;
-
-    background: #97b58c;
-}
-
-/* =========================================================
-   TREES
-   ========================================================= */
-
-.trees {
-    position: absolute;
-
-    top: 19%;
-    left: 0;
-    width: 100%;
-    height: 42%;
-
-    z-index: 4;
-    pointer-events: none;
-}
-
-.tree {
-    position: absolute;
-    bottom: 0;
-}
-
-.tree-one {
-    left: -42px;
-}
-
-.tree-two {
-    right: -55px;
-
-    transform: scale(0.78);
-}
-
-.tree-three {
-    left: 23%;
-    bottom: 15px;
-
-    transform: scale(0.46);
-    opacity: 0.7;
-}
-
-.tree-trunk {
-    width: 30px;
-    height: 125px;
-
-    background:
-        linear-gradient(
-            to right,
-            #755b47,
-            #94745a,
-            #735844
-        );
-
-    margin: auto;
-
-    border-radius:
-        10px
-        10px
-        0
-        0;
-}
-
-.tree-crown {
-    position: relative;
-
-    width: 155px;
-    height: 155px;
-
-    background:
-        radial-gradient(
-            circle at 35% 30%,
-            #aec49f,
-            #91ae84 70%
-        );
-
-    border-radius: 50%;
-
-    box-shadow:
-        -38px 27px 0 #a5bd96,
-        38px 30px 0 #86a57b,
-        0 5px 25px rgba(50, 80, 50, 0.1);
-}
-
-/* =========================================================
-   GARDEN
-   ========================================================= */
-
-.garden {
-    position: absolute;
-
-    left: 0;
-    right: 0;
-    bottom: 0;
-    height: 49%;
-
-    overflow: hidden;
-
-    background:
-        linear-gradient(
-            to bottom,
-            #9cbd8d 0%,
-            #88ab76 48%,
-            #759862 100%
-        );
-
-    border-radius:
-        48%
-        48%
-        0
-        0 /
-        14%
-        14%
-        0
-        0;
-
-    z-index: 10;
-}
-
-.garden::before {
-    content: "";
-
-    position: absolute;
-
-    left: -10%;
-    right: -10%;
-    top: -18px;
-    height: 55px;
-
-    border-radius: 50%;
-
-    background:
-        rgba(189, 214, 170, 0.45);
-}
-
-.garden-light {
-    position: absolute;
-    inset: 0;
-
-    background:
-        radial-gradient(
-            circle at 50% 20%,
-            rgba(255, 255, 220, 0.22),
-            transparent 42%
-        );
-
-    pointer-events: none;
-}
-
-.grass-layer {
-    position: absolute;
-    inset: 0;
-
-    opacity: 0.18;
-
-    background-image:
-        radial-gradient(
-            circle at 20% 30%,
-            #4f7348 1px,
-            transparent 1px
-        ),
-        radial-gradient(
-            circle at 70% 50%,
-            #4f7348 1px,
-            transparent 1px
-        );
-
-    background-size:
-        42px 42px;
-}
-
-/* =========================================================
-   GRASS TUFTS
-   ========================================================= */
-
-.grass-tuft {
-    position: absolute;
-
-    color: #55794e;
-    font-size: 27px;
-    opacity: 0.55;
-
-    z-index: 4;
-}
-
-.tuft-one {
-    left: 7%;
-    bottom: 27%;
-}
-
-.tuft-two {
-    left: 28%;
-    bottom: 12%;
-}
-
-.tuft-three {
-    left: 53%;
-    bottom: 31%;
-}
-
-.tuft-four {
-    right: 24%;
-    bottom: 14%;
-}
-
-.tuft-five {
-    right: 7%;
-    bottom: 34%;
-}
-
-/* =========================================================
-   FLOWERS
-   ========================================================= */
-
-.flower {
-    position: absolute;
-
-    width: 14px;
-    height: 32px;
-
-    z-index: 5;
-}
-
-.flower::before {
-    content: "";
-
-    position: absolute;
-
-    width: 4px;
-    height: 25px;
-
-    background: #5d8255;
-
-    left: 5px;
-    top: 8px;
-
-    border-radius: 5px;
-}
-
-.flower span {
-    position: absolute;
-
-    width: 15px;
-    height: 15px;
-
-    border-radius: 50%;
-
-    background: #e7c5c9;
-
-    top: 0;
-
-    box-shadow:
-        7px 0 0 #e7c5c9,
-        3px 6px 0 #e7c5c9,
-        -4px 3px 0 #e7c5c9;
-}
-
-.flower-one {
-    left: 17%;
-    bottom: 29%;
-}
-
-.flower-two {
-    left: 74%;
-    bottom: 43%;
-
-    transform: scale(0.8);
-}
-
-.flower-three {
-    left: 34%;
-    bottom: 14%;
-
-    transform: scale(0.75);
-}
-
-.flower-four {
-    right: 9%;
-    bottom: 21%;
-}
-
-.flower-five {
-    left: 46%;
-    bottom: 48%;
-
-    transform: scale(0.62);
-}
-
-.flower-six {
-    left: 6%;
-    bottom: 44%;
-
-    transform: scale(0.7);
-}
-
-/* =========================================================
-   GARDEN OBJECTS
-   ========================================================= */
-
-.garden-object {
-    position: absolute;
-
-    font-size: 31px;
-
-    filter:
-        drop-shadow(
-            0 4px 3px rgba(0, 0, 0, 0.13)
-        );
-
-    z-index: 15;
-}
-
-.carrot {
-    left: 13%;
-    bottom: 10%;
-}
-
-.basket {
-    right: 11%;
-    bottom: 14%;
-    opacity: 0.82;
-}
-
-.garden-stone {
-    position: absolute;
-
-    background:
-        linear-gradient(
-            145deg,
-            #b5b7a8,
-            #929786
-        );
-
-    border-radius: 50%;
-
-    box-shadow:
-        inset -3px -3px 4px
-        rgba(0, 0, 0, 0.08);
-}
-
-.stone-one {
-    width: 25px;
-    height: 14px;
-
-    left: 38%;
-    bottom: 9%;
-}
-
-.stone-two {
-    width: 18px;
-    height: 11px;
-
-    right: 34%;
-    bottom: 25%;
-}
-
-.stone-three {
-    width: 30px;
-    height: 16px;
-
-    right: 5%;
-    bottom: 8%;
-}
-
-/* =========================================================
-   MEEPS' SPECIAL TOYS
-   Blue Long-Necked Duck + White/Black Rabbit Teddy
-   ========================================================= */
-
-.special-toy {
-    position: absolute;
-
-    pointer-events: none;
-    transform-origin: bottom center;
-
-    z-index: 22;
-    display: block;
-}
-
-/* =========================================================
-   BLUE LONG-NECKED DUCK
-   ========================================================= */
-
-.duck-toy {
-    left: 24%;
-    bottom: 24%;
-    width: 58px;
-    height: 72px;
-    animation:
-        duckIdle
-        4.5s
-        ease-in-out
-        infinite;
-}
-
-.duck-body {
-    position: absolute;
-
-    left: 7px;
-    bottom: 0;
-
-    width: 43px;
-    height: 31px;
-
-    background:
-        linear-gradient(
-            145deg,
-            #78b8d8,
-            #4a86aa
-        );
-
-    border-radius:
-        55%
-        48%
-        45%
-        50%;
-
-    box-shadow:
-        inset -4px -4px 0
-        rgba(0, 0, 0, 0.09);
-}
-
-.duck-neck {
-    position: absolute;
-
-    left: 19px;
-    bottom: 21px;
-
-    width: 16px;
-    height: 40px;
-
-    background:
-        linear-gradient(
-            to right,
-            #5794b5,
-            #7dbbd6,
-            #4b87a9
-        );
-
-    border-radius:
-        50%
-        50%
-        40%
-        40%;
-
-    transform:
-        rotate(-3deg);
-}
-
-.duck-head {
-    position: absolute;
-
-    left: 13px;
-    top: 0;
-
-    width: 30px;
-    height: 27px;
-
-    background:
-        linear-gradient(
-            145deg,
-            #7fc1dd,
-            #4d8eaf
-        );
-
-    border-radius: 50%;
-
-    box-shadow:
-        inset -3px -3px 0
-        rgba(0, 0, 0, 0.08);
-}
-
-.duck-eye {
-    position: absolute;
-
-    width: 5px;
-    height: 5px;
-
-    border-radius: 50%;
-    background: #273b43;
-
-    right: 6px;
-    top: 8px;
-}
-
-.duck-beak {
-    position: absolute;
-
-    width: 14px;
-    height: 8px;
-
-    right: -11px;
-    top: 12px;
-
-    background: #d6aa67;
-
-    border-radius:
-        70%
-        40%
-        60%
-        40%;
-
-    transform:
-        rotate(-4deg);
-}
-
-.duck-wing {
-    position: absolute;
-
-    width: 20px;
-    height: 16px;
-
-    left: 10px;
-    bottom: 9px;
-
-    background:
-        rgba(65, 122, 156, 0.78);
-
-    border-radius:
-        60%
-        40%
-        60%
-        40%;
-
-    transform:
-        rotate(12deg);
-}
-
-.duck-toy::after {
-    content: "";
-
-    position: absolute;
-
-    width: 46px;
-    height: 9px;
-
-    left: 5px;
-    bottom: -4px;
-
-    border-radius: 50%;
-
-    background:
-        rgba(45, 65, 40, 0.16);
-
-    filter: blur(1px);
-
-    z-index: -1;
-}
-
-/* =========================================================
-   LITTLE WHITE + BLACK RABBIT TEDDY
-   ========================================================= */
-
-.rabbit-teddy-toy {
-    right: 18%;
-    bottom: 27%;
-    width: 54px;
-    height: 58px;
-    animation:
-        teddyIdle
-        5.2s
-        ease-in-out
-        infinite;
-}
-
-.teddy-body {
-    position: absolute;
-
-    left: 10px;
-    bottom: 0;
-
-    width: 38px;
-    height: 37px;
-
-    background:
-        linear-gradient(
-            145deg,
-            #ffffff,
-            #e8e6df
-        );
-
-    border-radius:
-        48%
-        48%
-        42%
-        42%;
-
-    box-shadow:
-        inset -3px -3px 0
-        rgba(0, 0, 0, 0.06);
-}
-
-.teddy-head {
-    position: absolute;
-
-    left: 6px;
-    top: 2px;
-
-    width: 43px;
-    height: 37px;
-
-    background:
-        linear-gradient(
-            145deg,
-            #ffffff,
-            #e9e7e1
-        );
-
-    border-radius: 50%;
-
-    box-shadow:
-        0 2px 3px
-        rgba(0, 0, 0, 0.06);
-}
-
-.teddy-ear-black {
-    position: absolute;
-
-    width: 16px;
-    height: 22px;
-
-    left: 2px;
-    top: -9px;
-
-    background:
-        linear-gradient(
-            to bottom,
-            #292a28,
-            #20211f
-        );
-
-    border-radius:
-        55%
-        55%
-        45%
-        45%;
-
-    transform:
-        rotate(-12deg);
-}
-
-.teddy-ear-white {
-    position: absolute;
-
-    width: 16px;
-    height: 22px;
-
-    right: 2px;
-    top: -9px;
-
-    background:
-        linear-gradient(
-            to bottom,
-            #ffffff,
-            #e8e5df
-        );
-
-    border-radius:
-        55%
-        55%
-        45%
-        45%;
-
-    transform:
-        rotate(10deg);
-}
-
-.teddy-face-patch {
-    position: absolute;
-
-    width: 17px;
-    height: 22px;
-
-    left: 2px;
-    top: 5px;
-
-    background: #292a28;
-
-    border-radius:
-        50%
-        35%
-        45%
-        55%;
-
-    transform:
-        rotate(-5deg);
-}
-
-.teddy-eye {
-    position: absolute;
-
-    width: 5px;
-    height: 5px;
-
-    border-radius: 50%;
-    background: #302d29;
-
-    top: 15px;
-
-    z-index: 3;
-}
-
-.teddy-eye-left {
-    left: 12px;
-}
-
-.teddy-eye-right {
-    right: 9px;
-}
-
-.teddy-nose {
-    position: absolute;
-
-    width: 6px;
-    height: 5px;
-
-    left: 19px;
-    top: 22px;
-
-    border-radius: 50%;
-
-    background: #b87976;
-
-    z-index: 4;
-}
-
-.teddy-paw {
-    position: absolute;
-
-    width: 13px;
-    height: 18px;
-
-    bottom: 2px;
-
-    background: #eeeae3;
-
-    border-radius: 50%;
-}
-
-.teddy-paw-left {
-    left: 6px;
-}
-
-.teddy-paw-right {
-    right: 6px;
-}
-
-.rabbit-teddy-toy::after {
-    content: "";
-
-    position: absolute;
-
-    width: 40px;
-    height: 9px;
-
-    left: 7px;
-    bottom: -4px;
-
-    border-radius: 50%;
-
-    background:
-        rgba(45, 65, 40, 0.15);
-
-    filter: blur(1px);
-
-    z-index: -1;
-}
-
-/* =========================================================
-   TOY IDLE ANIMATIONS
-   ========================================================= */
-
-@keyframes duckIdle {
-    0%,
-    100% {
-        transform:
-            translateY(0)
-            rotate(0deg);
-    }
-
-    50% {
-        transform:
-            translateY(-2px)
-            rotate(-1deg);
-    }
-}
-
-@keyframes teddyIdle {
-    0%,
-    100% {
-        transform:
-            translateY(0)
-            rotate(0deg);
-    }
-
-    50% {
-        transform:
-            translateY(-1px)
-            rotate(1deg);
-    }
-}
-
-/* =========================================================
-   MAPLE / MEEPS
-   ========================================================= */
-
-.rabbit {
-    position: absolute;
-
-    width: 112px;
-    height: 128px;
-
-    left: 50%;
-    top: 55%;
-
-    transform:
-        translate(-50%, -50%);
-
-    cursor: pointer;
-
-    z-index: 30;
-
-    transition:
-        left 1.6s ease-in-out,
-        top 1.6s ease-in-out;
-
-    touch-action: manipulation;
-
-    will-change:
-        left,
-        top,
-        transform;
-}
-
-/* =========================================================
-   MAPLE SHADOW
-   ========================================================= */
-
-.rabbit-shadow {
-    position: absolute;
-
-    width: 78px;
-    height: 19px;
-
-    border-radius: 50%;
-
-    background:
-        rgba(40, 60, 35, 0.18);
-
-    bottom: 0;
-    left: 17px;
-
-    filter: blur(1px);
-}
-
-/* =========================================================
-   MAPLE BODY
-   ========================================================= */
-
-.rabbit-body {
-    position: absolute;
-
-    left: 18px;
-    bottom: 8px;
-
-    width: 75px;
-    height: 79px;
-
-    background:
-        linear-gradient(
-            145deg,
-            #292a27 0%,
-            #20211f 40%,
-            #181916 100%
-        );
-
-    border-radius:
-        48%
-        48%
-        43%
-        43%;
-
-    box-shadow:
-        inset -7px -5px 0
-        rgba(0, 0, 0, 0.12),
-        inset 7px 5px 0
-        rgba(255, 255, 255, 0.035);
-}
-
-/* =========================================================
-   CREAM CHEST
-   ========================================================= */
-
-.cream-chest {
-    position: absolute;
-
-    width: 55px;
-    height: 63px;
-
-    left: 10px;
-    bottom: 1px;
-
-    background:
-        linear-gradient(
-            to bottom,
-            #f6efe4,
-            #e8dfd2
-        );
-
-    border-radius:
-        50%
-        50%
-        42%
-        42%;
-
-    opacity: 0.98;
-
-    z-index: 1;
-}
-
-/* =========================================================
-   EARS
-   ========================================================= */
-
-.ear {
-    position: absolute;
-
-    width: 27px;
-    height: 70px;
-
-    top: -56px;
-
-    border-radius:
-        55%
-        55%
-        45%
-        45%;
-
-    z-index: -1;
-}
-
-.maple-black-ear {
-    left: 7px;
-
-    background:
-        linear-gradient(
-            to bottom,
-            #20211f,
-            #292a27
-        );
-
-    transform:
-        rotate(-9deg);
-}
-
-.maple-light-ear {
-    right: 6px;
-
-    background:
-        linear-gradient(
-            to bottom,
-            #e7dfd3,
-            #f4eee5
-        );
-
-    transform:
-        rotate(8deg);
-}
-
-.maple-light-ear::after {
-    content: "";
-
-    position: absolute;
-
-    width: 12px;
-    height: 48px;
-
-    left: 8px;
-    top: 10px;
-
-    border-radius: 50%;
-
-    background: #d8a9a5;
-
-    opacity: 0.3;
-}
-
-/* =========================================================
-   HEAD
-   ========================================================= */
-
-.rabbit-head {
-    position: absolute;
-
-    width: 72px;
-    height: 67px;
-
-    background:
-        linear-gradient(
-            145deg,
-            #f8f2e8,
-            #eee6da
-        );
-
-    border-radius: 50%;
-
-    left: 2px;
-    top: -40px;
-
-    z-index: 4;
-
-    box-shadow:
-        0 2px 4px
-        rgba(0, 0, 0, 0.04);
-}
-
-/* =========================================================
-   BLACK FACE PATCH
-   ========================================================= */
-
-.maple-face-patch {
-    position: absolute;
-
-    left: -2px;
-    top: -2px;
-
-    width: 36px;
-    height: 61px;
-
-    background:
-        linear-gradient(
-            145deg,
-            #20211f,
-            #292a27
-        );
-
-    border-radius:
-        50%
-        18%
-        48%
-        55%;
-
-    transform:
-        rotate(-5deg);
-
-    z-index: 1;
-    opacity: 0.99;
-}
-
-/* =========================================================
-   TAN FOREHEAD / NOSE STRIPE
-   ========================================================= */
-
-.maple-tan-stripe {
-    position: absolute;
-
-    width: 15px;
-    height: 55px;
-
-    left: 29px;
-    top: -1px;
-
-    background:
-        linear-gradient(
-            to bottom,
-            #b98763,
-            #a97554 65%,
-            #c18c68
-        );
-
-    border-radius:
-        50%
-        45%
-        55%
-        55%;
-
-    transform:
-        rotate(1deg);
-
-    z-index: 2;
-    opacity: 0.96;
-}
-
-/* =========================================================
-   EYES
-   ========================================================= */
-
-.eye {
-    position: absolute;
-
-    width: 8px;
-    height: 8px;
-
-    border-radius: 50%;
-
-    background: #302d29;
-
-    top: 27px;
-
-    z-index: 5;
-
-    box-shadow:
-        0 1px 1px
-        rgba(0, 0, 0, 0.15);
-}
-
-.eye-left {
-    left: 18px;
-}
-
-.eye-right {
-    right: 17px;
-}
-
-.eye-glint {
-    position: absolute;
-
-    width: 2px;
-    height: 2px;
-
-    border-radius: 50%;
-
-    background: white;
-
-    left: 2px;
-    top: 1px;
-}
-
-/* =========================================================
-   CHEEKS
-   ========================================================= */
-
-.cheek {
-    position: absolute;
-
-    width: 14px;
-    height: 8px;
-
-    border-radius: 50%;
-
-    background:
-        rgba(218, 160, 160, 0.22);
-
-    top: 39px;
-
-    z-index: 4;
-}
-
-.cheek-left {
-    left: 4px;
-}
-
-.cheek-right {
-    right: 4px;
-}
-
-/* =========================================================
-   NOSE
-   ========================================================= */
-
-.nose {
-    position: absolute;
-
-    width: 8px;
-    height: 6px;
-
-    background: #bc7d78;
-
-    border-radius: 50%;
-
-    left: 32px;
-    top: 38px;
-
-    z-index: 6;
-}
-
-/* =========================================================
-   MOUTH
-   ========================================================= */
-
-.mouth {
-    position: absolute;
-
-    width: 9px;
-    height: 5px;
-
-    left: 31px;
-    top: 44px;
-
-    border-bottom:
-        1.5px solid #80615a;
-
-    border-radius:
-        0
-        0
-        50%
-        50%;
-
-    z-index: 5;
-}
-
-/* =========================================================
-   FRONT PAWS
-   ========================================================= */
-
-.front-paw {
-    position: absolute;
-
-    width: 20px;
-    height: 25px;
-
-    background: #eee5d9;
-
-    border-radius: 50%;
-
-    bottom: 2px;
-
-    z-index: 4;
-}
-
-.paw-left {
-    left: 10px;
-}
-
-.paw-right {
-    right: 10px;
-}
-
-/* =========================================================
-   TAIL
-   ========================================================= */
-
-.rabbit-tail {
-    position: absolute;
-
-    width: 28px;
-    height: 28px;
-
-    border-radius: 50%;
-
-    background:
-        radial-gradient(
-            circle at 35% 30%,
-            #fffdf8,
-            #eee6db
-        );
-
-    right: -13px;
-    bottom: 20px;
-
-    z-index: 5;
-
-    box-shadow:
-        0 2px 4px
-        rgba(0, 0, 0, 0.08);
-}
-
-/* =========================================================
-   MAPLE ANIMATIONS
-   ========================================================= */
-
-.rabbit.idle {
-    animation:
-        rabbitIdle
-        3.2s
-        ease-in-out
-        infinite;
-}
-
-.rabbit.hop {
-    animation:
-        rabbitHop
-        0.7s
-        ease-in-out
-        2;
-}
-
-.rabbit.sleeping {
-    animation:
-        rabbitSleep
-        4s
-        ease-in-out
-        infinite;
-}
-
-.rabbit.happy {
-    animation:
-        rabbitHappy
-        0.5s
-        ease-in-out
-        3;
-}
-
-@keyframes rabbitIdle {
-    0%,
-    100% {
-        transform:
-            translate(-50%, -50%)
-            translateY(0);
-    }
-
-    50% {
-        transform:
-            translate(-50%, -50%)
-            translateY(-3px);
-    }
-}
-
-@keyframes rabbitHop {
-    0% {
-        transform:
-            translate(-50%, -50%)
-            translateY(0)
-            scale(1);
-    }
-
-    50% {
-        transform:
-            translate(-50%, -50%)
-            translateY(-22px)
-            scale(1.04);
-    }
-
-    100% {
-        transform:
-            translate(-50%, -50%)
-            translateY(0)
-            scale(1);
-    }
-}
-
-@keyframes rabbitSleep {
-    0%,
-    100% {
-        transform:
-            translate(-50%, -50%)
-            rotate(0deg);
-    }
-
-    50% {
-        transform:
-            translate(-50%, -50%)
-            rotate(2deg);
-    }
-}
-
-@keyframes rabbitHappy {
-    0%,
-    100% {
-        transform:
-            translate(-50%, -50%)
-            translateY(0);
-    }
-
-    50% {
-        transform:
-            translate(-50%, -50%)
-            translateY(-14px)
-            rotate(-3deg);
-    }
-}
-
-/* =========================================================
-   MESSAGE BUBBLE
-   ========================================================= */
-
-.message-bubble {
-    position: absolute;
-
-    max-width: 220px;
-
-    padding:
-        12px
-        16px;
-
-    border-radius: 18px;
-
-    background:
-        rgba(255, 255, 255, 0.94);
-
-    box-shadow:
-        0 8px 25px
-        rgba(50, 70, 50, 0.12);
-
-    color: #40503f;
-
-    font-size: 14px;
-    line-height: 1.4;
-
-    z-index: 50;
-
-    opacity: 1;
-
-    transform:
-        translate(-50%, -100%);
-
-    transition:
-        opacity 0.3s ease,
-        transform 0.3s ease;
-
-    pointer-events: none;
-}
-
-.message-bubble::after {
-    content: "";
-
-    position: absolute;
-
-    bottom: -8px;
-    left: 50%;
-
-    transform:
-        translateX(-50%);
-
-    border-left:
-        8px solid transparent;
-
-    border-right:
-        8px solid transparent;
-
-    border-top:
-        8px solid rgba(255, 255, 255, 0.94);
-}
-
-.message-bubble.hidden {
-    opacity: 0;
-
-    transform:
-        translate(-50%, -90%);
-}
-
-/* =========================================================
-   HEART
-   ========================================================= */
-
-.heart-effect {
-    position: absolute;
-
-    font-size: 28px;
-
-    z-index: 100;
-    pointer-events: none;
-
-    animation:
-        heartFloat
-        1.2s
-        ease-out
-        forwards;
-}
-
-.heart-effect.hidden {
-    display: none;
-}
-
-@keyframes heartFloat {
-    0% {
-        opacity: 1;
-
-        transform:
-            translate(-50%, 0)
-            scale(0.7);
-    }
-
-    100% {
-        opacity: 0;
-
-        transform:
-            translate(-50%, -80px)
-            scale(1.2);
-    }
-}
-
-/* =========================================================
-   BOTTOM NAV
-   ========================================================= */
-
-.bottom-nav {
-    position: absolute;
-
-    left: 12px;
-    right: 12px;
-
-    bottom:
-        calc(
-            12px +
-            env(safe-area-inset-bottom)
-        );
-
-    height: 68px;
-
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-
-    background:
-        rgba(255, 255, 255, 0.82);
-
-    backdrop-filter: blur(15px);
-
-    border-radius: 24px;
-
-    box-shadow:
-        0 10px 35px
-        rgba(50, 70, 50, 0.14);
-
-    z-index: 150;
-}
-
-.nav-button {
-    border: none;
-    background: transparent;
-
-    min-width: 80px;
-    height: 55px;
-
-    border-radius: 18px;
-
-    color: #6c7869;
-
-    font-size: 11px;
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-
-    gap: 4px;
-
-    cursor: pointer;
-}
-
-.nav-button.active {
-    background: #e5eedf;
-    color: #465943;
-}
-
-.nav-icon {
-    font-size: 20px;
-}
-
-/* =========================================================
-   OVERLAY SCREENS
-   ========================================================= */
-
-.overlay-screen {
-    position: absolute;
-    inset: 0;
-
-    background: #f4f1e8;
-
-    z-index: 300;
-
-    overflow-y: auto;
-
-    padding:
-        calc(
-            75px +
-            env(safe-area-inset-top)
-        )
-        18px
-        calc(
-            100px +
-            env(safe-area-inset-bottom)
-        );
-}
-
-.overlay-screen.hidden {
-    display: none;
-}
-
-.screen-header {
-    display: flex;
-
-    align-items: center;
-    gap: 15px;
-
-    margin-bottom: 22px;
-}
-
-.screen-header h2 {
-    font-size: 25px;
-    font-weight: 600;
-}
-
-.screen-subtitle {
-    color: #7b8578;
-
-    font-size: 13px;
-
-    margin-top: 3px;
-}
-
-.back-button {
-    width: 40px;
-    height: 40px;
-
-    border: none;
-    border-radius: 50%;
-
-    background: #e7e4da;
-
-    font-size: 22px;
-
-    flex-shrink: 0;
-    cursor: pointer;
-}
-
-/* =========================================================
-   MEMORY CARD
-   ========================================================= */
-
-.memory-card {
-    background: white;
-
-    border-radius: 22px;
-
-    padding: 20px;
-
-    text-align: center;
-
-    box-shadow:
-        0 5px 20px
-        rgba(50, 60, 45, 0.07);
-
-    margin-bottom: 25px;
-}
-
-.memory-placeholder {
-    width: 70px;
-    height: 70px;
-
-    margin:
-        0 auto
-        14px;
-
-    border-radius: 22px;
-
-    background: #e5ecdf;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    font-size: 36px;
-}
-
-.memory-card h3 {
-    font-size: 17px;
-    margin-bottom: 7px;
-}
-
-.memory-card p {
-    color: #778071;
-
-    font-size: 13px;
-    line-height: 1.5;
-}
-
-/* =========================================================
-   PHOTO UPLOAD
-   ========================================================= */
-
-.photo-upload-button {
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    width: 100%;
-    min-height: 52px;
-
-    margin-top: 18px;
-
-    border-radius: 16px;
-
-    background: #e5eedf;
-    color: #465943;
-
-    font-size: 15px;
-    font-weight: 600;
-
-    cursor: pointer;
-
-    -webkit-tap-highlight-color: transparent;
-}
-
-.photo-upload-button:active {
-    transform: scale(0.98);
-}
-
-/* =========================================================
-   UPLOAD PANEL
-   ========================================================= */
-
-.memory-upload-panel {
-    background: white;
-
-    border-radius: 22px;
-
-    padding: 18px;
-
-    margin-bottom: 25px;
-
-    box-shadow:
-        0 5px 20px
-        rgba(50, 60, 45, 0.07);
-}
-
-.memory-upload-panel.hidden {
-    display: none;
-}
-
-.upload-preview-wrapper {
-    width: 100%;
-    max-height: 320px;
-
-    overflow: hidden;
-
-    border-radius: 18px;
-
-    background: #e5ecdf;
-
-    margin-bottom: 16px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.memory-preview {
-    width: 100%;
-    max-height: 320px;
-
-    object-fit: cover;
-    display: block;
-}
-
-.input-label {
-    display: block;
-
-    color: #53604f;
-
-    font-size: 13px;
-    font-weight: 600;
-
-    margin-bottom: 13px;
-}
-
-.memory-input {
-    display: block;
-
-    width: 100%;
-
-    margin-top: 7px;
-
-    border:
-        1px solid #dfe5da;
-
-    background: #f7f8f4;
-    color: #3f4b3c;
-
-    border-radius: 12px;
-
-    padding: 12px;
-
-    font-family: inherit;
-    font-size: 14px;
-
-    outline: none;
-}
-
-.memory-input:focus {
-    border-color: #9caf91;
-}
-
-.upload-actions {
-    display: flex;
-
-    gap: 10px;
-    align-items: center;
-
-    margin-top: 5px;
-}
-
-.upload-actions .primary-button {
-    flex: 1;
-}
-
-.primary-button {
-    border: none;
-
-    background: #8faa80;
-    color: white;
-
-    border-radius: 14px;
-
-    padding:
-        11px
-        15px;
-
-    font-size: 13px;
-    font-weight: 600;
-
-    cursor: pointer;
-}
-
-.secondary-action-button {
-    border: none;
-
-    background: #edf1e9;
-    color: #657160;
-
-    border-radius: 14px;
-
-    padding:
-        12px
-        15px;
-
-    font-size: 13px;
-
-    cursor: pointer;
-}
-
-.upload-status {
-    min-height: 18px;
-
-    margin-top: 10px;
-
-    text-align: center;
-
-    color: #71806c;
-
-    font-size: 12px;
-}
-
-/* =========================================================
-   MEMORY GALLERY
-   ========================================================= */
-
-.memories-section-header {
-    display: flex;
-
-    align-items: center;
-    justify-content: space-between;
-
-    margin-bottom: 12px;
-}
-
-.memories-section-header h3 {
-    font-size: 18px;
-}
-
-.memory-count {
-    min-width: 26px;
-    height: 26px;
-
-    padding:
-        0
-        7px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    border-radius: 13px;
-
-    background: #e5ecdf;
-    color: #5e6c59;
-
-    font-size: 12px;
-    font-weight: 600;
-}
-
-.memory-gallery {
-    display: flex;
-
-    flex-direction: column;
-
-    gap: 16px;
-
-    margin-top: 16px;
-}
-
-.memory-photo-card {
-    background: white;
-
-    border-radius: 22px;
-
-    overflow: hidden;
-
-    box-shadow:
-        0 5px 20px
-        rgba(50, 60, 45, 0.08);
-}
-
-.memory-photo {
-    display: block;
-
-    width: 100%;
-    height: auto;
-    max-height: 420px;
-
-    object-fit: cover;
-}
-
-.memory-photo-details {
-    padding: 16px;
-}
-
-.memory-photo-date {
-    color: #899286;
-
-    font-size: 12px;
-
-    margin-bottom: 6px;
-}
-
-.memory-photo-caption {
-    color: #465143;
-
-    font-size: 15px;
-    line-height: 1.4;
-}
-
-.memory-delete-button {
-    margin-top: 12px;
-
-    border: none;
-
-    background: #f2e8e5;
-    color: #8b625b;
-
-    border-radius: 12px;
-
-    padding:
-        9px
-        13px;
-
-    font-size: 12px;
-
-    cursor: pointer;
-}
-
-.empty-memories {
-    background:
-        rgba(255, 255, 255, 0.65);
-
-    border-radius: 22px;
-
-    padding:
-        35px
-        20px;
-
-    text-align: center;
-
-    color: #74806f;
-}
-
-.empty-memory-icon {
-    font-size: 45px;
-
-    margin-bottom: 10px;
-}
-
-.empty-memories h3 {
-    color: #53604f;
-
-    font-size: 16px;
-
-    margin-bottom: 7px;
-}
-
-.empty-memories p {
-    font-size: 13px;
-
-    line-height: 1.5;
-}
-
-/* =========================================================
-   PHOTO VIEWER
-   ========================================================= */
-
-.photo-viewer {
-    position: absolute;
-    inset: 0;
-
-    z-index: 700;
-
-    background:
-        rgba(25, 32, 25, 0.94);
-
-    display: flex;
-    flex-direction: column;
-
-    align-items: center;
-    justify-content: center;
-
-    padding:
-        40px
-        18px
-        25px;
-}
-
-.photo-viewer.hidden {
-    display: none;
-}
-
-.photo-viewer img {
-    max-width: 100%;
-    max-height: 78vh;
-
-    object-fit: contain;
-
-    border-radius: 12px;
-
-    box-shadow:
-        0 20px 60px
-        rgba(0, 0, 0, 0.3);
-}
-
-.photo-viewer-close {
-    position: absolute;
-
-    top:
-        calc(
-            18px +
-            env(safe-area-inset-top)
-        );
-
-    right: 18px;
-
-    width: 42px;
-    height: 42px;
-
-    border: none;
-    border-radius: 50%;
-
-    background:
-        rgba(255, 255, 255, 0.15);
-
-    color: white;
-
-    font-size: 30px;
-    line-height: 1;
-
-    cursor: pointer;
-}
-
-.viewer-caption {
-    color: white;
-
-    text-align: center;
-
-    font-size: 14px;
-
-    margin-top: 15px;
-
-    max-width: 90%;
-}
-
-/* =========================================================
-   SETTINGS
-   ========================================================= */
-
-.settings-content {
-    display: flex;
-
-    flex-direction: column;
-
-    gap: 12px;
-}
-
-.setting-card {
-    background: white;
-
-    border-radius: 20px;
-
-    padding: 18px;
-
-    display: flex;
-
-    align-items: center;
-    justify-content: space-between;
-
-    gap: 15px;
-}
-
-.setting-card strong {
-    display: block;
-
-    margin-bottom: 5px;
-}
-
-.setting-card p {
-    color: #7b8578;
-
-    font-size: 13px;
-
-    line-height: 1.4;
-}
-
-.setting-card select {
-    border: none;
-
-    background: #edf1e9;
-
-    padding:
-        9px
-        10px;
-
-    border-radius: 10px;
-
-    color: #465943;
-
-    max-width: 130px;
-}
-
-.setting-value {
-    color: #71806c;
-
-    font-size: 13px;
-}
-
-/* =========================================================
-   TOGGLE
-   ========================================================= */
-
-.toggle {
-    position: relative;
-
-    width: 50px;
-    height: 30px;
-
-    display: block;
-}
-
-.toggle input {
-    display: none;
-}
-
-.slider {
-    position: absolute;
-    inset: 0;
-
-    border-radius: 30px;
-
-    background: #d5d9d2;
-
-    cursor: pointer;
-
-    transition: 0.2s;
-}
-
-.slider::before {
-    content: "";
-
-    position: absolute;
-
-    width: 24px;
-    height: 24px;
-
-    left: 3px;
-    top: 3px;
-
-    border-radius: 50%;
-
-    background: white;
-
-    transition: 0.2s;
-
-    box-shadow:
-        0 2px 5px
-        rgba(0, 0, 0, 0.15);
-}
-
-.toggle input:checked + .slider {
-    background: #8faa80;
-}
-
-.toggle input:checked + .slider::before {
-    transform: translateX(20px);
-}
-
-/* =========================================================
-   FEED MODAL
-   ========================================================= */
-
-.modal {
-    position: absolute;
-    inset: 0;
-
-    z-index: 500;
-
-    background:
-        rgba(40, 50, 40, 0.25);
-
-    backdrop-filter: blur(5px);
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    padding: 20px;
-}
-
-.modal.hidden {
-    display: none;
-}
-
-.modal-card {
-    width: 100%;
-    max-width: 360px;
-
-    background: #faf8f2;
-
-    border-radius: 28px;
-
-    padding: 28px;
-
-    text-align: center;
-
-    box-shadow:
-        0 20px 60px
-        rgba(20, 30, 20, 0.2);
-}
-
-.modal-rabbit {
-    font-size: 55px;
-
-    margin-bottom: 12px;
-}
-
-.modal-card h2 {
-    font-size: 23px;
-
-    margin-bottom: 8px;
-}
-
-.modal-card > p {
-    color: #798177;
-
-    font-size: 14px;
-
-    margin-bottom: 22px;
-}
-
-.food-options {
-    display: flex;
-
-    justify-content: center;
-
-    gap: 10px;
-
-    margin-bottom: 20px;
-}
-
-.food-button {
-    border: none;
-
-    background: #edf2e8;
-
-    border-radius: 18px;
-
-    width: 85px;
-    height: 85px;
-
-    display: flex;
-
-    flex-direction: column;
-
-    align-items: center;
-    justify-content: center;
-
-    gap: 4px;
-
-    font-size: 26px;
-
-    cursor: pointer;
-}
-
-.food-button span {
-    font-size: 11px;
-
-    color: #63705e;
-}
-
-.secondary-button {
-    border: none;
-
-    background: transparent;
-
-    color: #737c70;
-
-    padding: 10px;
-
-    font-size: 14px;
-
-    cursor: pointer;
-}
-
-/* =========================================================
-   NIGHT MODE
-   ========================================================= */
-
-body.night .sky {
-    background:
-        linear-gradient(
-            to bottom,
-            #253747,
-            #405660 62%,
-            #5d7167
-        );
-}
-
-body.night .sun {
-    opacity: 0;
-}
-
-body.night .moon {
-    opacity: 1;
-}
-
-body.night .cloud {
-    opacity: 0.08;
-}
-
-body.night .bird {
-    opacity: 0.12;
-}
-
-body.night .garden {
-    background:
-        linear-gradient(
-            to bottom,
-            #61785a,
-            #4c6348
-        );
-}
-
-body.night .garden-light {
-    opacity: 0.25;
-}
-
-body.night .tree-crown {
-    filter: brightness(0.72);
-}
-
-body.night .duck-toy {
-    filter: brightness(0.72);
-}
-
-body.night .rabbit-teddy-toy {
-    filter: brightness(0.76);
-}
-
-/* =========================================================
-   ACCESSIBILITY
-   ========================================================= */
-
-button {
-    -webkit-tap-highlight-color: transparent;
-}
-
-button:active {
-    transform: scale(0.96);
-}
-
-/* =========================================================
-   RESPONSIVE
-   ========================================================= */
-
-@media (max-height: 680px) {
-    .garden {
-        height: 46%;
-    }
-
-    .bottom-nav {
-        height: 60px;
-    }
-
-    .rabbit {
-        transform:
-            translate(-50%, -50%)
-            scale(0.9);
-    }
-
-    .memory-gallery {
-        gap: 9px;
-    }
-
-    .memory-card {
-        padding: 14px;
-    }
-}
-
-@media (max-width: 360px) {
-    .memory-card {
-        padding: 16px;
-    }
-
-    .bottom-nav {
-        left: 8px;
-        right: 8px;
-    }
-
-    .nav-button {
-        min-width: 70px;
-    }
-
-    .duck-toy {
-        left: 20%;
-    }
-
-    .rabbit-teddy-toy {
-        right: 18%;
-    }
+:root {
+  --ink:#314033;
+  --muted:#6f7c70;
+  --accent:#d98c66;
+  --accent-dark:#687f5d;
+  --cream:#f8f3e8;
+  --glass:rgba(255,255,255,.72);
+  --line:rgba(76,96,72,.14);
+  --warm:#a45f4e;
+  --shadow:0 18px 50px rgba(57,73,54,.14);
+}
+* { box-sizing:border-box; }
+html,body { margin:0; min-height:100%; background:#dfead7; color:var(--ink); font-family:Inter, ui-rounded, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+body { overflow-x:hidden; }
+button,input,select { font:inherit; }
+button { -webkit-tap-highlight-color:transparent; }
+.hidden { display:none !important; }
+.app-shell { min-height:100dvh; padding:12px 14px 92px; }
+.glass-card { background:var(--glass); border:1px solid rgba(255,255,255,.65); backdrop-filter:blur(18px); -webkit-backdrop-filter:blur(18px); box-shadow:var(--shadow); }
+.topbar { width:min(100%,760px); margin:0 auto 8px; border-radius:24px; padding:13px 16px; display:flex; align-items:center; justify-content:space-between; gap:12px; }
+.eyebrow { margin:0; font-size:.63rem; letter-spacing:.11em; text-transform:uppercase; color:var(--muted); font-weight:900; }
+h1 { margin:2px 0 0; font-size:clamp(1.35rem,5vw,1.8rem); letter-spacing:-.045em; }
+.icon-button,.close-button { width:40px; height:40px; border-radius:14px; border:1px solid var(--line); background:rgba(255,255,255,.8); color:var(--ink); display:grid; place-items:center; cursor:pointer; font-size:1.05rem; box-shadow:0 8px 18px rgba(0,0,0,.05); }
+.close-button { font-size:1.6rem; line-height:1; }
+.status-strip { width:min(100%,760px); margin:0 auto 8px; border-radius:20px; padding:7px; display:grid; grid-template-columns:repeat(4,1fr); gap:5px; }
+.status-pill { min-width:0; display:grid; grid-template-columns:auto 1fr; grid-template-rows:auto auto; column-gap:5px; align-items:center; border-radius:14px; padding:7px 6px; background:rgba(255,255,255,.45); }
+.status-pill span { grid-row:1 / span 2; font-size:1rem; }.status-pill strong { font-size:.84rem; line-height:1.05; }.status-pill small { color:var(--muted); font-size:.57rem; font-weight:800; }
+.garden-wrap { width:min(100%,760px); margin:0 auto; }
+.garden { position:relative; width:100%; height:calc(100dvh - 210px); min-height:535px; max-height:780px; overflow:hidden; border-radius:32px; background:linear-gradient(#bcd9e5 0 44%,#b8d99d 44% 100%); border:1px solid rgba(255,255,255,.8); box-shadow:0 24px 65px rgba(52,70,48,.18); isolation:isolate; transition:background 1s ease, filter 1s ease; }
+.sky-layer,.hills { position:absolute; inset:0; pointer-events:none; }
+.sun { position:absolute; right:9%; top:8%; width:66px; height:66px; border-radius:50%; background:radial-gradient(circle at 35% 35%,#fff8c3,#ffd978 70%); box-shadow:0 0 45px rgba(255,218,112,.46); transition:opacity 1s; }
+.moon { position:absolute; right:10%; top:8%; width:54px; height:54px; border-radius:50%; background:#f3efd9; box-shadow:0 0 30px rgba(239,240,215,.42); opacity:0; transition:opacity 1s; }
+.moon::after { content:""; position:absolute; width:47px; height:47px; border-radius:50%; left:-10px; top:-5px; background:#31435e; }
+.stars { position:absolute; inset:0; opacity:0; background-image:radial-gradient(circle at 13% 14%,#fff 0 1px,transparent 1.5px),radial-gradient(circle at 31% 8%,#fff 0 1px,transparent 1.5px),radial-gradient(circle at 48% 18%,#fff 0 1.2px,transparent 1.7px),radial-gradient(circle at 72% 10%,#fff 0 1px,transparent 1.5px),radial-gradient(circle at 87% 23%,#fff 0 1px,transparent 1.5px),radial-gradient(circle at 58% 7%,#fff 0 1px,transparent 1.5px); transition:opacity 1s; }
+.cloud { position:absolute; width:92px; height:28px; border-radius:999px; background:rgba(255,255,255,.62); filter:blur(.2px); animation:cloudFloat 24s linear infinite; }
+.cloud::before,.cloud::after { content:""; position:absolute; border-radius:50%; background:inherit; }.cloud::before{width:43px;height:43px;left:18px;bottom:4px}.cloud::after{width:34px;height:34px;right:12px;bottom:3px}
+.cloud-one { left:-120px; top:13%; }.cloud-two { left:27%; top:22%; transform:scale(.72); animation-duration:34s; animation-delay:-13s; }.cloud-three { left:76%; top:15%; transform:scale(.55); animation-duration:29s; animation-delay:-18s; }
+@keyframes cloudFloat { to { translate:900px 0; } }
+.bird { position:absolute; font-size:28px; color:rgba(55,73,65,.6); font-family:serif; animation:birdFly 18s linear infinite; }.bird-one{left:-50px;top:28%}.bird-two{left:-120px;top:19%;animation-delay:-9s;animation-duration:23s;transform:scale(.7)}
+@keyframes birdFly { 25%{translate:220px -16px} 60%{translate:520px 14px} to{translate:900px -8px} }
+.hill { position:absolute; border-radius:50% 50% 0 0; transform-origin:bottom center; }.hill-back{left:-12%;right:-10%;height:43%;bottom:31%;background:#98c486;clip-path:ellipse(66% 54% at 49% 100%)}.hill-front{left:-20%;right:-16%;height:40%;bottom:22%;background:#84b576;clip-path:ellipse(70% 55% at 52% 100%)}
+.garden::after { content:""; position:absolute; z-index:-1; left:0; right:0; bottom:0; height:44%; background:linear-gradient(180deg,#81b26f,#75a865 55%,#6c9d5e); }
+.garden.time-dawn { background:linear-gradient(#efc9b7 0,#d6d8cf 35%,#a6c992 44%,#8fba79 100%); }.garden.time-dusk{background:linear-gradient(#e6ad91 0,#b8a8b8 38%,#91b47b 44%,#789c67 100%)}
+.garden.time-night { background:linear-gradient(#26364d 0,#3f5570 43%,#597a62 44%,#45664f 100%); }.garden.time-night .sun{opacity:0}.garden.time-night .moon,.garden.time-night .stars{opacity:1}.garden.time-night::after{background:linear-gradient(180deg,#4f7958,#40684a)}
+.garden.season-autumn::after { background:linear-gradient(180deg,#83aa67,#75965b 58%,#687f51); }.garden.season-winter::after{background:linear-gradient(180deg,#dbe7d7,#c5d6c0)}.garden.season-winter .hill-back{background:#d0dfcd}.garden.season-winter .hill-front{background:#becfbb}.garden.season-spring::after{background:linear-gradient(180deg,#90c37b,#7fb26c)}
+
+.back-fence { position:absolute; z-index:1; left:3%; right:3%; bottom:34%; height:58px; display:flex; align-items:end; justify-content:space-between; opacity:.78; }
+.back-fence::before,.back-fence::after { content:""; position:absolute; left:0; right:0; height:7px; background:#c9b18c; border-radius:8px; box-shadow:inset 0 -2px rgba(101,73,52,.1); }.back-fence::before{top:16px}.back-fence::after{top:39px}
+.back-fence span { position:relative; width:18px; height:56px; background:linear-gradient(90deg,#d6c19f,#bfa47f); border-radius:5px 5px 3px 3px; z-index:1; box-shadow:inset -3px 0 rgba(99,73,55,.08); }.back-fence span::before{content:"";position:absolute;left:0;top:-7px;border-left:9px solid transparent;border-right:9px solid transparent;border-bottom:9px solid #d6c19f}
+.garden-sign { position:absolute; z-index:3; right:5%; bottom:35%; width:92px; padding:7px 8px 6px; border-radius:8px; background:#a57752; border:3px solid #7c583f; color:#fff7e9; text-align:center; rotate:2deg; box-shadow:0 6px 13px rgba(67,50,37,.16); }.garden-sign::after{content:"";position:absolute;width:8px;height:45px;background:#79553e;left:42px;top:100%;z-index:-1}.garden-sign span{display:block;font-family:Georgia,serif;font-size:.83rem;font-weight:700}.garden-sign small{display:block;font-size:.46rem;opacity:.85;text-transform:uppercase;letter-spacing:.09em}
+
+.maple-tree { position:absolute; left:2%; bottom:25%; width:205px; height:306px; z-index:3; }.tree-trunk{position:absolute;left:86px;bottom:0;width:38px;height:154px;background:linear-gradient(90deg,#684a36,#876347 55%,#5c402f);border-radius:18px 18px 9px 9px;box-shadow:inset -6px 0 rgba(0,0,0,.07)}.tree-trunk::before,.tree-trunk::after{content:"";position:absolute;width:18px;height:93px;background:#75533c;border-radius:15px;top:-34px}.tree-trunk::before{left:-19px;rotate:-32deg}.tree-trunk::after{right:-18px;rotate:34deg}
+.tree-canopy{position:absolute;width:118px;height:118px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#badb8c 0 24%,#88b76c 30% 65%,#71995b 72%);box-shadow:inset -10px -12px 24px rgba(50,83,43,.14),0 8px 20px rgba(65,89,51,.1)}.canopy-one{left:17px;top:55px}.canopy-two{left:76px;top:30px}.canopy-three{left:49px;top:0}.canopy-four{left:2px;top:13px;width:103px;height:103px}.garden.season-autumn .tree-canopy{background:radial-gradient(circle at 35% 30%,#e0a85f 0 23%,#c8794e 31% 64%,#9e5748 72%)}.garden.season-winter .tree-canopy{background:radial-gradient(circle,rgba(218,226,210,.76),rgba(151,169,147,.65));box-shadow:none}.garden.season-spring .tree-canopy{background:radial-gradient(circle at 35% 30%,#d9eca4 0 24%,#a7cd7f 31% 64%,#88b36e 72%)}
+.tree-hitbox{position:absolute;inset:0;border:0;background:transparent;cursor:pointer;z-index:8}.tree-sparkle{position:absolute;z-index:9;left:52%;top:18%;font-size:22px;color:#fff6c7;animation:sparkle 2.5s ease-in-out infinite}.memory-leaves{position:absolute;inset:0;z-index:7;pointer-events:none}.memory-leaf{position:absolute;border:0;background:transparent;padding:0;font-size:18px;cursor:pointer;pointer-events:auto;filter:drop-shadow(0 2px 3px rgba(0,0,0,.12));animation:leafBob 3s ease-in-out infinite}.memory-leaf:nth-child(2n){animation-delay:-1.4s}@keyframes leafBob{50%{translate:0 -4px;rotate:5deg}}
+
+.scene-spot,.special-toy { border:0; background:transparent; padding:0; cursor:pointer; -webkit-tap-highlight-color:transparent; }.scene-spot:active,.special-toy:active{transform:scale(.96)}
+.spot-label { position:absolute; left:50%; translate:-50% 0; bottom:-22px; background:rgba(255,255,255,.88); color:#5f6b5f; font-size:.54rem; font-weight:900; padding:4px 7px; border-radius:999px; box-shadow:0 4px 10px rgba(0,0,0,.08); opacity:0; transform:translateY(4px); transition:.2s; white-space:nowrap; pointer-events:none; }.scene-spot:hover .spot-label,.scene-spot:focus-visible .spot-label,.special-toy:hover .spot-label,.special-toy:focus-visible .spot-label{opacity:1;transform:translateY(0)}
+
+.hideaway { position:absolute; z-index:3; right:7%; bottom:39%; width:114px; height:90px; }.hideaway-house{position:absolute;left:11px;bottom:0;width:92px;height:65px;background:linear-gradient(#d5bb8c,#bea172);border-radius:12px 12px 8px 8px;box-shadow:inset -8px -5px rgba(89,66,47,.08)}.hideaway-roof{position:absolute;left:2px;top:4px;width:110px;height:45px;background:#947056;clip-path:polygon(50% 0,100% 75%,88% 100%,50% 39%,11% 100%,0 75%);z-index:2}.hideaway-door{position:absolute;left:40px;bottom:0;width:35px;height:47px;border-radius:20px 20px 3px 3px;background:#57483d;z-index:3;box-shadow:inset 0 5px 12px rgba(0,0,0,.25)}.hideaway-heart{position:absolute;z-index:4;right:14px;bottom:25px;color:#805b52;font-size:19px}.hideaway .spot-label{bottom:-20px}
+
+.stone-path { position:absolute; z-index:2; left:28%; right:20%; bottom:7%; height:150px; pointer-events:none; }.path-stone{position:absolute;width:68px;height:31px;border-radius:50%;background:linear-gradient(#c9c9b7,#aaa993);box-shadow:inset 0 3px rgba(255,255,255,.25),0 4px 0 rgba(80,91,72,.08)}.p1{left:2%;bottom:1%;rotate:-7deg}.p2{left:22%;bottom:19%;width:61px}.p3{left:43%;bottom:33%;rotate:8deg}.p4{left:62%;bottom:52%;width:58px;rotate:-6deg}.p5{left:77%;bottom:70%;width:54px}.p6{left:89%;bottom:86%;width:48px;rotate:6deg}
+
+.flower-meadow { position:absolute; z-index:4; left:25%; bottom:31%; width:175px; height:70px; }.flower-bunch{display:flex;align-items:end;gap:0;position:absolute;bottom:0;left:0;right:0;justify-content:center}.flower-bunch i{font-style:normal;font-size:28px;filter:drop-shadow(0 3px 2px rgba(0,0,0,.06));animation:flowerSway 3.2s ease-in-out infinite;transform-origin:bottom center}.flower-bunch i:nth-child(2n){animation-delay:-1.3s}.flower-bunch i:nth-child(3n){animation-delay:-2.1s}.garden-bed{position:absolute;z-index:3;bottom:18%;display:flex;align-items:flex-end}.garden-bed-left{left:5%}.garden-bed-right{right:3%}.flower{display:inline-block;font-size:23px;animation:flowerSway 3.6s ease-in-out infinite;transform-origin:bottom center;filter:drop-shadow(0 3px 2px rgba(0,0,0,.06))}.flower:nth-child(2n){animation-delay:-1.8s}@keyframes flowerSway{50%{rotate:7deg;translate:0 -2px}}
+.grass-clump{position:absolute;z-index:2;color:#4f834d;font-size:30px;font-weight:900;rotate:180deg;opacity:.72;animation:grassSway 3s ease-in-out infinite}.g1{left:17%;bottom:23%}.g2{left:44%;bottom:13%}.g3{right:26%;bottom:18%}.g4{right:3%;bottom:11%}.g5{left:34%;bottom:39%}@keyframes grassSway{50%{rotate:184deg;translate:2px 0}}.mushrooms{position:absolute;z-index:3;left:15%;bottom:34%;font-size:18px}.mushrooms span:last-child{font-size:13px;margin-left:-4px}.watering-can{position:absolute;z-index:3;right:34%;bottom:14%;font-size:29px;rotate:-8deg;filter:grayscale(.15)}
+.bee{position:absolute;z-index:6;font-size:18px;pointer-events:none;animation:beeFloat 7s ease-in-out infinite}.bee-one{left:38%;bottom:40%}.bee-two{right:9%;bottom:26%;animation-delay:-3.5s;transform:scale(.75)}@keyframes beeFloat{0%,100%{translate:0 0}25%{translate:20px -17px}55%{translate:-14px -6px}80%{translate:13px 8px}}.butterfly-friend{position:absolute;z-index:6;left:18%;bottom:49%;font-size:20px;animation:butterIdle 8s ease-in-out infinite;pointer-events:none}@keyframes butterIdle{0%,100%{translate:0 0;rotate:-8deg}35%{translate:40px -25px;rotate:7deg}70%{translate:18px 12px;rotate:-2deg}}
+
+.tiny-pond { position:absolute; z-index:3; right:4%; bottom:8%; width:132px; height:52px; border-radius:50%; background:linear-gradient(180deg,#9bd2db,#69aeb8 66%,#5b9ba6); box-shadow:inset 0 5px 12px rgba(255,255,255,.4),0 5px 0 rgba(64,101,96,.13); }.tiny-pond::before{content:"";position:absolute;inset:-8px;border-radius:50%;border:7px solid rgba(141,135,104,.35);z-index:-1}.pond-shine{position:absolute;left:18%;top:16%;width:48%;height:10px;border-radius:50%;border-top:2px solid rgba(255,255,255,.48)}.water-lily{position:absolute;left:60%;top:8px;font-size:19px}.pond-flower{position:absolute;left:67%;top:-10px;font-size:19px}.tiny-pond .spot-label{bottom:-25px}
+.garden-bench{position:absolute;z-index:2;right:24%;bottom:31%;width:105px;height:53px;border-top:12px solid #8d6546;border-bottom:8px solid #8d6546;box-shadow:0 7px 0 rgba(70,67,46,.08)}.garden-bench::before,.garden-bench::after{content:"";position:absolute;top:8px;width:7px;height:43px;background:#674832}.garden-bench::before{left:15px}.garden-bench::after{right:15px}.bench-heart{position:absolute;left:46px;top:-7px;color:#e7c7b0;font-size:17px}.lantern{position:absolute;z-index:4;bottom:34%;width:17px;height:29px;border:2px solid #7e6548;border-radius:5px;background:rgba(255,228,145,.8);box-shadow:0 0 18px rgba(255,221,118,.72);color:#fff;font-size:9px;display:grid;place-items:center}.lantern::after{content:"";position:absolute;width:2px;height:43px;background:#78624b;top:27px}.lantern-left{left:48%}.lantern-right{right:19%}.garden.time-night .lantern{box-shadow:0 0 26px rgba(255,225,130,.95)}.wind-chime{position:absolute;z-index:4;right:14%;bottom:48%;font-size:18px;color:#7d8175;animation:chime 3s ease-in-out infinite;transform-origin:top center}@keyframes chime{50%{rotate:5deg}}
+
+.picnic-blanket { position:absolute; z-index:3; left:45%; bottom:16%; width:112px; height:74px; border-radius:14px; background:linear-gradient(90deg,rgba(255,255,255,.13) 50%,transparent 50%),linear-gradient(rgba(255,255,255,.13) 50%,transparent 50%),#d79a83; background-size:24px 24px; rotate:-4deg; box-shadow:0 9px 12px rgba(60,75,48,.1); }.blanket-pattern{position:absolute;inset:6px;border:1px dashed rgba(255,255,255,.5);border-radius:10px}.blanket-book{position:absolute;right:14px;top:13px;font-size:22px}.picnic-blanket .spot-label{bottom:-24px}
+.carrot-patch{position:absolute;z-index:3;left:19%;bottom:9%;width:108px;height:54px;display:flex;gap:2px;align-items:end;justify-content:center;font-size:26px}.carrot-greens{position:absolute;left:19px;right:15px;bottom:2px;color:#4e844e;font-size:26px;z-index:-1;letter-spacing:8px}.carrot-patch .spot-label{bottom:-19px}
+
+.special-toy{position:absolute;z-index:6;transition:transform .2s}.duck-toy{left:28%;bottom:23%;width:58px;height:74px;animation:duckIdle 4.6s ease-in-out infinite}.duck-body{position:absolute;left:9px;bottom:2px;width:42px;height:33px;background:#5d95b0;border-radius:56% 46% 49% 52%}.duck-neck{position:absolute;left:28px;bottom:27px;width:15px;height:36px;background:#6ca1b8;border-radius:12px}.duck-head{position:absolute;left:23px;top:3px;width:30px;height:28px;background:#6ca1b8;border-radius:50%}.duck-eye{position:absolute;right:7px;top:8px;width:4px;height:4px;background:#1d2b31;border-radius:50%}.duck-beak{position:absolute;right:-10px;top:12px;width:14px;height:7px;background:#e9a35f;border-radius:50% 60% 60% 50%}.duck-wing{position:absolute;left:12px;bottom:12px;width:23px;height:15px;background:#4f8098;border-radius:50%;rotate:-12deg}@keyframes duckIdle{50%{translate:0 -3px;rotate:2deg}}
+.rabbit-teddy-toy{right:16%;bottom:24%;width:56px;height:61px;animation:teddyIdle 5.2s ease-in-out infinite}.teddy-body{position:absolute;left:11px;bottom:1px;width:36px;height:32px;background:#ece6da;border-radius:48%}.teddy-head{position:absolute;left:9px;top:11px;width:39px;height:34px;background:#f2ede3;border-radius:50%}.teddy-ear-black,.teddy-ear-white{position:absolute;top:-15px;width:11px;height:23px;border-radius:70% 70% 40% 40%}.teddy-ear-black{left:4px;background:#302e2d;rotate:-8deg}.teddy-ear-white{right:4px;background:#f2ede3;rotate:9deg}.teddy-face-patch{position:absolute;left:0;top:5px;width:19px;height:22px;background:#383432;border-radius:55%}.teddy-eye{position:absolute;top:15px;width:3px;height:3px;border-radius:50%;background:#161616}.teddy-eye-left{left:10px}.teddy-eye-right{right:8px}.teddy-nose{position:absolute;left:18px;top:22px;width:4px;height:3px;background:#8a6764;border-radius:50%}.teddy-paw{position:absolute;bottom:0;width:15px;height:12px;background:#e8e0d3;border-radius:50%}.teddy-paw-left{left:7px}.teddy-paw-right{right:7px}@keyframes teddyIdle{50%{translate:0 -2px;rotate:-2deg}}
+
+.level-extra{opacity:0;transform:scale(.65);pointer-events:none;transition:opacity .7s ease,transform .7s ease}.garden[data-level="2"] .level-2,.garden[data-level="3"] .level-2,.garden[data-level="3"] .level-3,.garden[data-level="4"] .level-2,.garden[data-level="4"] .level-3,.garden[data-level="4"] .level-4,.garden[data-level="5"] .level-2,.garden[data-level="5"] .level-3,.garden[data-level="5"] .level-4,.garden[data-level="5"] .level-5,.garden[data-level="6"] .level-extra{opacity:1;transform:scale(1)}.extra-daisies{position:absolute;left:8%;bottom:8%;font-size:20px}.frog-friend{position:absolute;right:12%;bottom:14%;font-size:20px}.heart-flowers{position:absolute;left:51%;bottom:8%;font-size:18px}
+
+.rabbit { --hop-lean:0deg; position:absolute; left:54%; top:67%; width:112px; height:126px; transform:translate(-50%,-50%); border:0; background:transparent; padding:0; cursor:pointer; z-index:12; transition:left .26s cubic-bezier(.33,.8,.35,1),top .26s cubic-bezier(.33,.8,.35,1),filter .25s; transform-origin:50% 80%; -webkit-tap-highlight-color:transparent; }.rabbit-shadow{position:absolute;width:82px;height:18px;left:14px;bottom:4px;border-radius:50%;background:rgba(44,62,39,.2);filter:blur(2px);transition:transform .2s,opacity .2s}.rabbit-body{position:absolute;width:78px;height:75px;left:19px;bottom:19px;border-radius:52% 48% 46% 54%;background:linear-gradient(145deg,#c79a72,#b98865);box-shadow:inset -10px -9px 18px rgba(84,53,40,.1)}.rabbit-chest{position:absolute;width:34px;height:44px;left:42px;bottom:28px;background:#d7b591;border-radius:50%;opacity:.68}.rabbit-head{position:absolute;width:68px;height:61px;left:24px;top:19px;border-radius:49% 51% 52% 48%;background:linear-gradient(145deg,#cda37d,#bc8d68);z-index:2}.rabbit-ear{position:absolute;top:-48px;width:22px;height:62px;border-radius:70% 70% 38% 38%;transform-origin:bottom center;box-shadow:inset 0 0 0 5px rgba(101,65,54,.06)}.rabbit-ear-left{left:7px;background:#292524;rotate:-11deg}.rabbit-ear-right{right:7px;background:#c69b76;rotate:10deg}.rabbit-face-patch{position:absolute;left:0;top:5px;width:35px;height:40px;background:#2f2b2a;border-radius:63% 45% 56% 40%}.rabbit-eye{position:absolute;top:24px;width:7px;height:8px;background:#121111;border-radius:50%;box-shadow:inset 1px 1px 0 #fff;z-index:3}.rabbit-eye-left{left:18px}.rabbit-eye-right{right:16px}.rabbit-nose{position:absolute;left:32px;top:40px;width:7px;height:6px;background:#875e5b;border-radius:55% 55% 65% 65%;z-index:3}.rabbit-mouth{position:absolute;left:32px;top:46px;width:8px;height:6px;border-left:1.5px solid #725252;border-bottom:1.5px solid #725252;rotate:-45deg;opacity:.75}.rabbit-foot{position:absolute;bottom:13px;width:33px;height:18px;border-radius:50%;background:#c69a77}.rabbit-foot-left{left:8px;rotate:-8deg}.rabbit-foot-right{right:7px;rotate:8deg}.rabbit-tail{position:absolute;right:8px;bottom:49px;width:26px;height:27px;border-radius:50%;background:#ead9c8;z-index:-1}.rabbit-cheek{position:absolute;left:44px;top:57px;width:9px;height:5px;border-radius:50%;background:rgba(207,118,115,.25);z-index:4}.rabbit.idle .rabbit-ear-left{animation:earTwitch 6s ease-in-out infinite}.rabbit.idle .rabbit-nose{animation:noseTwitch 1.35s ease-in-out infinite}.rabbit.walking{animation:travelHop .29s ease-in-out infinite}.rabbit.walking .rabbit-shadow{animation:shadowHop .29s ease-in-out infinite}.rabbit.happy{animation:happyHop .48s ease-out 2}.rabbit.binky{animation:binky .85s cubic-bezier(.2,.7,.2,1) 1}.rabbit.zooming{animation:travelHop .21s ease-in-out infinite;filter:drop-shadow(-8px 5px 0 rgba(255,255,255,.18))}.rabbit.grooming .rabbit-head{animation:groom 1.45s ease-in-out 2}.rabbit.flopped{transform:translate(-50%,-45%) rotate(78deg) scale(.94);transition:left .3s,top .3s,transform .55s ease}.rabbit.sleeping .rabbit-eye{height:2px;border-radius:3px;box-shadow:none;top:28px}.rabbit.sleeping .rabbit-body{animation:sleepBreath 2.8s ease-in-out infinite}.rabbit.inspecting .rabbit-head{animation:inspectToy .62s ease-in-out 3}.rabbit.nibbling .rabbit-head{animation:nibble .32s ease-in-out 6}.rabbit.hidden-in-hideaway{opacity:.12;filter:blur(1px);transform:translate(-50%,-50%) scale(.72)}
+@keyframes earTwitch{0%,88%,100%{rotate:-11deg}91%{rotate:-26deg}95%{rotate:-5deg}}@keyframes noseTwitch{50%{transform:scale(.8) translateY(1px)}}@keyframes travelHop{0%,100%{transform:translate(-50%,-50%) translateY(0) rotate(var(--hop-lean)) scale(1)}48%{transform:translate(-50%,-50%) translateY(-18px) rotate(var(--hop-lean)) scale(1.02)}}@keyframes shadowHop{0%,100%{transform:scale(1);opacity:.9}50%{transform:scale(.62);opacity:.5}}@keyframes happyHop{0%,100%{transform:translate(-50%,-50%)}50%{transform:translate(-50%,-50%) translateY(-20px) scale(1.04)}}@keyframes binky{0%{transform:translate(-50%,-50%) rotate(0)}38%{transform:translate(-50%,-50%) translateY(-45px) rotate(-12deg) scale(1.04)}65%{transform:translate(-50%,-50%) translateY(-28px) rotate(13deg)}100%{transform:translate(-50%,-50%)}}@keyframes groom{0%,100%{rotate:0;translate:0 0}30%{rotate:-8deg;translate:-5px 7px}60%{rotate:6deg;translate:3px 4px}}@keyframes sleepBreath{50%{transform:scaleY(.96) scaleX(1.02)}}@keyframes inspectToy{50%{translate:4px 7px;rotate:5deg}}@keyframes nibble{50%{translate:0 3px;scale:.98}}
+
+.message-bubble{position:absolute;z-index:30;max-width:min(240px,70vw);padding:10px 13px;background:rgba(255,255,255,.96);border-radius:17px 17px 17px 6px;box-shadow:0 11px 27px rgba(45,58,42,.18);font-size:.83rem;line-height:1.35;transform:translate(-50%,-100%);pointer-events:none}.message-bubble::after{content:"";position:absolute;left:24px;bottom:-7px;border:8px solid transparent;border-top-color:rgba(255,255,255,.96);border-left:0}.heart-effect{position:absolute;z-index:31;font-size:28px;transform:translate(-50%,-50%);pointer-events:none;animation:heartFloat 1.25s ease-out forwards}@keyframes heartFloat{from{opacity:0;transform:translate(-50%,-20%) scale(.5)}20%{opacity:1}to{opacity:0;transform:translate(-50%,-180%) scale(1.3)}}.particle-layer{position:absolute;inset:0;z-index:10;pointer-events:none}.hop-puff{position:absolute;width:22px;height:10px;border-radius:50%;background:rgba(234,239,222,.55);filter:blur(1px);transform:translate(-50%,-50%);animation:puff .55s ease-out forwards}@keyframes puff{to{opacity:0;transform:translate(-50%,-50%) scale(2.3)}}.sparkle-particle{position:absolute;font-size:15px;animation:sparkleRise .9s ease-out forwards}@keyframes sparkleRise{to{opacity:0;translate:0 -40px;rotate:30deg}}.ambient-note{position:absolute;left:50%;bottom:12px;transform:translateX(-50%);z-index:25;background:rgba(255,255,255,.91);padding:8px 12px;border-radius:999px;font-size:.72rem;box-shadow:0 7px 18px rgba(0,0,0,.12);white-space:nowrap;max-width:88%;overflow:hidden;text-overflow:ellipsis}.little-note-button{position:absolute;z-index:20;right:13px;top:13px;width:42px;height:42px;border:1px solid rgba(255,255,255,.7);border-radius:50%;background:rgba(255,255,255,.75);box-shadow:0 7px 20px rgba(45,58,42,.12);cursor:pointer;animation:noteBob 4s ease-in-out infinite}.little-note-button span{font-size:20px}@keyframes noteBob{50%{translate:0 -4px;rotate:3deg}}
+
+.rain-layer,.snow-layer,.fireflies{position:absolute;inset:0;overflow:hidden;pointer-events:none;opacity:0;transition:opacity .5s}.garden.weather-rain .rain-layer{opacity:1;background-image:repeating-linear-gradient(108deg,transparent 0 16px,rgba(210,235,246,.45) 17px 18px,transparent 19px 35px);background-size:44px 44px;animation:rainMove .7s linear infinite}@keyframes rainMove{to{background-position:-30px 50px}}.garden.weather-snow .snow-layer{opacity:1;background-image:radial-gradient(circle,#fff 0 2px,transparent 2.5px),radial-gradient(circle,#fff 0 1.4px,transparent 2px);background-size:48px 48px,68px 68px;background-position:0 0,20px -10px;animation:snowMove 8s linear infinite}@keyframes snowMove{to{background-position:24px 420px,-16px 360px}}.garden.time-night .fireflies{opacity:1;background-image:radial-gradient(circle at 28% 62%,rgba(255,239,128,.9) 0 1.5px,transparent 2px),radial-gradient(circle at 72% 72%,rgba(255,239,128,.8) 0 1.5px,transparent 2px),radial-gradient(circle at 56% 58%,rgba(255,239,128,.7) 0 1px,transparent 2px),radial-gradient(circle at 18% 77%,rgba(255,239,128,.8) 0 1px,transparent 2px);animation:fireflyPulse 4s ease-in-out infinite}@keyframes fireflyPulse{50%{opacity:.35;filter:blur(.2px)}}.rare-event{position:absolute;z-index:22;pointer-events:none}.rare-event.butterfly{width:34px;height:30px;left:-40px;top:42%;animation:butterflyCross 7s ease-in-out forwards}.rare-event.butterfly::before{content:"🦋";font-size:28px}@keyframes butterflyCross{30%{translate:35vw -40px;rotate:-8deg}60%{translate:65vw 25px;rotate:9deg}to{translate:110vw -20px}}.rare-event.shooting-star{left:15%;top:14%;width:120px;height:2px;background:linear-gradient(90deg,transparent,#fff);transform:rotate(-20deg);filter:drop-shadow(0 0 5px #fff);animation:shoot 1.4s ease-out forwards}@keyframes shoot{from{opacity:0;translate:-80px 30px}15%{opacity:1}to{opacity:0;translate:300px -80px}}.rare-event.rainbow{left:18%;top:22%;width:64%;height:38%;border-radius:50% 50% 0 0;border:10px solid rgba(255,166,166,.42);border-bottom:0;box-shadow:0 -9px 0 rgba(255,215,136,.36),0 -18px 0 rgba(160,210,171,.32),0 -27px 0 rgba(141,183,224,.28);animation:rainbowFade 7s ease-in-out forwards}@keyframes rainbowFade{0%,100%{opacity:0}20%,75%{opacity:.9}}
+
+.bottom-nav{position:fixed;z-index:60;left:50%;bottom:max(10px,env(safe-area-inset-bottom));transform:translateX(-50%);width:min(calc(100% - 22px),740px);padding:7px;border-radius:24px;display:grid;grid-template-columns:repeat(5,1fr);gap:4px}.nav-button{border:0;background:transparent;border-radius:17px;padding:7px 2px;display:grid;gap:1px;place-items:center;cursor:pointer;color:var(--muted)}.nav-button span{font-size:1.17rem}.nav-button small{font-size:.59rem;font-weight:900}.nav-button.active{background:rgba(255,255,255,.82);color:var(--accent-dark);box-shadow:0 7px 20px rgba(0,0,0,.06)}
+.modal,.photo-viewer{position:fixed;inset:0;z-index:100;background:rgba(35,45,33,.5);backdrop-filter:blur(12px);display:grid;place-items:center;padding:20px}.modal-card{position:relative;width:min(100%,540px);border-radius:28px;background:#f7faf4;padding:24px;box-shadow:0 30px 90px rgba(0,0,0,.24)}.modal-card .close-button{position:absolute;right:16px;top:16px}.modal-card h2{margin:4px 48px 18px 0}.food-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.food-button{border:1px solid var(--line);background:#fff;border-radius:18px;min-height:120px;padding:13px 8px;display:grid;gap:5px;place-items:center;cursor:pointer;box-shadow:0 8px 20px rgba(0,0,0,.05)}.food-button span{font-size:2rem}.food-button strong{font-size:.86rem}.food-button small{font-size:.63rem;color:var(--muted)}.play-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.play-choice{border:1px solid var(--line);background:#fff;border-radius:19px;padding:16px 12px;min-height:112px;display:grid;gap:4px;place-items:center;cursor:pointer;box-shadow:0 8px 20px rgba(0,0,0,.05)}.play-choice span{font-size:1.9rem}.play-choice strong{font-size:.86rem}.play-choice small{font-size:.64rem;color:var(--muted);text-align:center}.note-card{text-align:center}.note-heart{font-size:2.6rem}.note-copy{font-family:Georgia,serif;font-size:1.03rem;line-height:1.65;color:#4f5d4e;margin:12px auto 20px;max-width:390px}
+
+.screen-overlay{position:fixed;inset:0;z-index:90;overflow:auto;background:linear-gradient(180deg,#eef5e9,#e3eee0);padding:max(18px,env(safe-area-inset-top)) 16px calc(30px + env(safe-area-inset-bottom))}.screen-header{width:min(100%,720px);margin:0 auto 14px;display:flex;justify-content:space-between;align-items:center;gap:12px}.screen-header h2{margin:2px 0 0;font-size:1.7rem;letter-spacing:-.04em}.memory-hero,.settings-card{width:min(100%,720px);margin:0 auto 12px;border-radius:24px;padding:18px}.memory-hero{display:flex;align-items:center;justify-content:space-between;gap:12px}.memory-hero div{display:grid}.memory-hero strong{font-size:2rem;line-height:1}.memory-hero span{font-size:.72rem;color:var(--muted)}.primary-button,.secondary-button{border:0;border-radius:14px;padding:11px 15px;font-weight:800;cursor:pointer}.primary-button{background:var(--accent-dark);color:#fff;box-shadow:0 8px 18px rgba(97,123,85,.2)}.secondary-button{background:rgba(255,255,255,.8);color:var(--ink);border:1px solid var(--line)}.memory-upload-panel{width:min(100%,720px);margin:0 auto 12px;border-radius:24px;padding:16px;display:grid;gap:12px}.memory-upload-panel img{width:100%;max-height:330px;object-fit:cover;border-radius:18px;background:#dfe8da}.memory-upload-panel label{display:grid;gap:6px;font-size:.72rem;font-weight:800;color:var(--muted)}.memory-upload-panel input{border:1px solid var(--line);background:rgba(255,255,255,.9);border-radius:13px;padding:11px;color:var(--ink)}.button-row{display:flex;justify-content:flex-end;gap:8px}.status-text{min-height:1.2em;margin:0;color:var(--warm);font-size:.75rem}.empty-state{width:min(100%,720px);margin:0 auto 12px;border-radius:24px;padding:28px;text-align:center}.empty-icon{font-size:2.4rem}.empty-state h3{margin:7px 0 5px}.empty-state p{margin:0;color:var(--muted);font-size:.82rem}.memory-gallery{width:min(100%,720px);margin:0 auto;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.memory-photo-card{overflow:hidden;border-radius:21px;background:#fff;box-shadow:0 12px 30px rgba(55,70,51,.1)}.memory-photo{width:100%;aspect-ratio:1/1;object-fit:cover;display:block;cursor:pointer}.memory-photo-details{padding:11px}.memory-photo-date{font-size:.62rem;color:var(--muted);font-weight:800;text-transform:uppercase;letter-spacing:.07em}.memory-photo-caption{font-size:.82rem;margin:5px 0 9px;line-height:1.35}.memory-delete-button{border:0;background:transparent;color:#a1534d;padding:0;font-size:.68rem;cursor:pointer}.settings-card{display:grid;gap:0}.setting-row{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:14px 2px;border-bottom:1px solid var(--line)}.setting-row:last-child{border-bottom:0}.setting-row span{display:grid;gap:3px}.setting-row strong{font-size:.9rem}.setting-row small{font-size:.68rem;color:var(--muted);line-height:1.35}.setting-row select{max-width:120px;border:1px solid var(--line);background:#fff;border-radius:12px;padding:8px}.setting-row input[type="checkbox"]{width:24px;height:24px;accent-color:var(--accent-dark)}.garden-progress-card h3{margin:4px 0 12px}.progress-track{height:10px;background:rgba(95,119,86,.12);border-radius:999px;overflow:hidden}.progress-fill{height:100%;width:0;background:linear-gradient(90deg,#91aa79,#bb7a5f);border-radius:inherit;transition:width .8s ease}.garden-progress-card p:last-child,.soft-copy{font-size:.78rem;color:var(--muted);line-height:1.55}.photo-viewer{grid-template-rows:1fr auto}.viewer-close{position:fixed;right:18px;top:max(18px,env(safe-area-inset-top));z-index:3}.photo-viewer img{max-width:min(100%,800px);max-height:76dvh;border-radius:24px;box-shadow:0 25px 80px rgba(0,0,0,.35)}.viewer-copy{max-width:720px;text-align:center;color:#fff;padding:8px 16px}.viewer-copy p{margin:4px}.viewer-copy #viewerDate{font-size:.72rem;opacity:.7}.viewer-copy #viewerCaption{font-size:.92rem}
+
+body.reduced-motion *,body.reduced-motion *::before,body.reduced-motion *::after{animation-duration:.001ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.001ms!important}body.weather-effects-off .rain-layer,body.weather-effects-off .snow-layer,body.weather-effects-off .fireflies,body.weather-effects-off .rare-event,body.weather-effects-off .bee,body.weather-effects-off .butterfly-friend,body.weather-effects-off .bird{display:none!important}
+@keyframes sparkle{50%{opacity:.3;transform:scale(.7) rotate(30deg)}}
+
+@media (max-width:560px){
+  .app-shell{padding-left:9px;padding-right:9px}.topbar{padding:11px 13px}.status-strip{gap:4px;padding:5px}.status-pill{padding:6px 3px}.status-pill span{font-size:.86rem}.status-pill strong{font-size:.78rem}.status-pill small{font-size:.52rem}
+  .garden{height:calc(100dvh - 218px);min-height:520px;border-radius:27px}.maple-tree{left:-19px;bottom:26%;transform:scale(.78);transform-origin:bottom left}.back-fence{bottom:35%}.garden-sign{right:2%;bottom:36%;transform:scale(.82);transform-origin:right bottom}.hideaway{right:2%;bottom:41%;transform:scale(.82);transform-origin:right bottom}.flower-meadow{left:24%;bottom:34%;transform:scale(.78);transform-origin:left bottom}.garden-bench{right:21%;bottom:32%;transform:scale(.8)}.tiny-pond{right:1%;bottom:9%;transform:scale(.86);transform-origin:right bottom}.picnic-blanket{left:43%;bottom:16%;transform:scale(.84)}.carrot-patch{left:14%;bottom:10%;transform:scale(.86)}.duck-toy{left:26%;bottom:24%}.rabbit-teddy-toy{right:12%;bottom:25%}.garden-bed-left{left:1%;bottom:18%;transform:scale(.8)}.garden-bed-right{right:-3%;bottom:18%;transform:scale(.8)}.watering-can{display:none}.stone-path{left:23%;right:10%}.rabbit{width:106px;height:120px}.little-note-button{right:10px;top:10px;width:38px;height:38px}
+  .food-grid{grid-template-columns:1fr}.food-button{grid-template-columns:auto 1fr;grid-template-rows:auto auto;min-height:74px;text-align:left}.food-button span{grid-row:1/span 2;font-size:1.7rem}.food-button strong,.food-button small{justify-self:start}.play-grid{grid-template-columns:1fr 1fr}.play-choice{min-height:96px;padding:12px 8px}.spot-label{display:none}
+}
+@media (max-width:390px){.garden{min-height:500px}.hideaway{transform:scale(.74)}.flower-meadow{left:22%;transform:scale(.7)}.garden-bench{right:19%;transform:scale(.72)}.picnic-blanket{left:42%;transform:scale(.75)}.duck-toy{left:24%}.rabbit-teddy-toy{right:9%}.maple-tree{transform:scale(.72)}.play-grid{grid-template-columns:1fr}}
+@media (min-width:760px){.memory-gallery{grid-template-columns:repeat(3,minmax(0,1fr))}}
+
+/* =====================================================
+   V3.2 — CALM, ENRICHED GARDEN
+   Keep the layered world, remove visual clutter, and give
+   Meeps a generous patch of open grass to live in.
+   ===================================================== */
+
+/* Background layers stay rich, but quieter. */
+.back-fence {
+  bottom: 35%;
+  opacity: .56;
+  filter: saturate(.82);
+}
+.garden-sign {
+  right: 6%;
+  bottom: 34.5%;
+  width: 78px;
+  padding: 6px 7px 5px;
+  border-width: 2px;
+  opacity: .88;
+  transform: scale(.9);
+  transform-origin: bottom right;
+}
+.garden-sign::after { left: 35px; height: 38px; }
+.garden-sign span { font-size: .72rem; }
+.garden-sign small { font-size: .41rem; }
+
+/* Strong left anchor, with more breathing room around the trunk. */
+.maple-tree {
+  left: 2.5%;
+  bottom: 25.5%;
+  transform: scale(.94);
+  transform-origin: bottom left;
+}
+
+/* The hideaway remains a key part of the world, just a touch softer. */
+.hideaway {
+  right: 6.5%;
+  bottom: 40%;
+  transform: scale(.92);
+  transform-origin: bottom right;
+  filter: saturate(.88);
+}
+
+/* A short, gentle stepping-stone route instead of a full strip across the garden. */
+.stone-path {
+  left: 35%;
+  right: 16%;
+  bottom: 7%;
+  height: 128px;
+  opacity: .72;
+}
+.path-stone { width: 58px; height: 27px; }
+.p1 { left: 6%; bottom: 0; rotate: -6deg; }
+.p2 { left: 34%; bottom: 24%; width: 54px; rotate: 3deg; }
+.p3 { left: 62%; bottom: 50%; width: 50px; rotate: -5deg; }
+.p4 { left: 84%; bottom: 76%; width: 46px; rotate: 5deg; }
+
+/* One interactive flower patch, deliberately modest. */
+.flower-meadow {
+  left: 25%;
+  bottom: 31.5%;
+  width: 116px;
+  height: 55px;
+}
+.flower-bunch { gap: 1px; }
+.flower-bunch i {
+  font-size: 22px;
+  filter: drop-shadow(0 2px 2px rgba(0,0,0,.05));
+  animation-duration: 4.4s;
+}
+.flower-bunch i:nth-child(2) { translate: 0 -3px; }
+.flower-bunch i:nth-child(3) { font-size: 20px; }
+
+/* Two tiny decorative clusters replace the old rows of flowers. */
+.wildflower-cluster {
+  position: absolute;
+  z-index: 3;
+  display: flex;
+  align-items: flex-end;
+  gap: 1px;
+  pointer-events: none;
+  opacity: .9;
+}
+.wildflower-cluster span {
+  display: inline-block;
+  font-size: 19px;
+  transform-origin: bottom center;
+  animation: flowerSway 4.8s ease-in-out infinite;
+  filter: drop-shadow(0 2px 1px rgba(0,0,0,.04));
+}
+.wildflower-cluster span:nth-child(2) { font-size: 17px; animation-delay: -1.7s; }
+.wildflower-cluster span:nth-child(3) { font-size: 18px; animation-delay: -3s; }
+.wildflowers-left { left: 7%; bottom: 16.5%; }
+.wildflowers-pond { right: 5%; bottom: 20%; }
+
+/* Quiet texture rather than decorative rows. */
+.grass-clump {
+  font-size: 25px;
+  opacity: .42;
+  animation-duration: 4.8s;
+}
+.g1 { left: 18%; bottom: 23%; }
+.g2 { left: 43%; bottom: 11%; }
+.g3 { right: 24%; bottom: 17%; }
+.mushrooms {
+  left: 14%;
+  bottom: 31.5%;
+  transform: scale(.82);
+  opacity: .82;
+}
+
+/* Ambient life is intentionally sparse. */
+.bee {
+  font-size: 16px;
+  opacity: .78;
+  animation-duration: 11s;
+}
+.bee-one { left: 37%; bottom: 41%; }
+.butterfly-friend {
+  left: 18%;
+  bottom: 49%;
+  font-size: 18px;
+  opacity: .82;
+  animation-duration: 13s;
+}
+
+/* Give the pond a gentle living shimmer rather than adding more objects. */
+.tiny-pond {
+  right: 5%;
+  bottom: 8%;
+  width: 126px;
+  height: 49px;
+}
+.pond-shine {
+  animation: pondShimmer 4.6s ease-in-out infinite;
+}
+@keyframes pondShimmer {
+  0%,100% { opacity: .35; transform: translateX(0) scaleX(.85); }
+  50% { opacity: .8; transform: translateX(12px) scaleX(1.08); }
+}
+
+/* Background furniture stays, but does not compete with Meeps. */
+.garden-bench {
+  right: 25%;
+  bottom: 32.5%;
+  transform: scale(.82);
+  transform-origin: bottom right;
+  opacity: .7;
+  filter: saturate(.76);
+}
+
+.picnic-blanket {
+  left: 45.5%;
+  bottom: 14.5%;
+  width: 105px;
+  height: 69px;
+  opacity: .94;
+}
+
+.carrot-patch {
+  left: 18%;
+  bottom: 8.5%;
+  width: 78px;
+  height: 46px;
+  gap: 1px;
+  font-size: 23px;
+}
+.carrot-greens {
+  left: 15px;
+  right: 10px;
+  font-size: 22px;
+  letter-spacing: 7px;
+  opacity: .72;
+}
+
+/* Personal toys stay visible but sit at the edges of Meeps' open space. */
+.duck-toy { left: 28.5%; bottom: 22%; transform: scale(.9); transform-origin: bottom center; }
+.rabbit-teddy-toy { right: 15.5%; bottom: 23%; transform: scale(.9); transform-origin: bottom center; }
+
+/* Meeps is the focal point. */
+.rabbit { left: 54%; top: 66%; }
+
+/* Higher garden levels add tiny discoveries, never another dense row. */
+.extra-daisies { display: none !important; }
+.heart-flowers {
+  left: auto;
+  right: 27%;
+  bottom: 7.5%;
+  font-size: 15px;
+  opacity: .78;
+}
+.frog-friend { right: 11%; bottom: 13.5%; font-size: 17px; }
+
+/* Mobile balance: preserve the same calm zones on a narrow screen. */
+@media (max-width:560px) {
+  .maple-tree { left: -24px; bottom: 27%; transform: scale(.71); }
+  .back-fence { bottom: 35.5%; opacity: .5; }
+  .garden-sign { right: 2%; bottom: 35%; transform: scale(.68); }
+  .hideaway { right: 1%; bottom: 41%; transform: scale(.72); }
+  .flower-meadow { left: 24%; bottom: 33%; transform: scale(.7); }
+  .wildflowers-left { left: 2%; bottom: 17%; transform: scale(.83); transform-origin: bottom left; }
+  .wildflowers-pond { right: 1%; bottom: 19%; transform: scale(.8); transform-origin: bottom right; }
+  .garden-bench { right: 20%; bottom: 33%; transform: scale(.66); }
+  .tiny-pond { right: 1%; bottom: 8.5%; transform: scale(.82); transform-origin: right bottom; }
+  .picnic-blanket { left: 43.5%; bottom: 14.5%; transform: scale(.78); }
+  .carrot-patch { left: 13%; bottom: 9%; transform: scale(.8); }
+  .duck-toy { left: 25%; bottom: 23%; transform: scale(.82); }
+  .rabbit-teddy-toy { right: 10%; bottom: 24%; transform: scale(.82); }
+  .stone-path { left: 27%; right: 9%; opacity: .62; }
+  .rabbit { left: 53%; top: 66%; }
+}
+
+@media (max-width:390px) {
+  .maple-tree { transform: scale(.66); }
+  .hideaway { transform: scale(.66); }
+  .flower-meadow { left: 22%; transform: scale(.64); }
+  .garden-bench { right: 18%; transform: scale(.59); }
+  .picnic-blanket { left: 42%; transform: scale(.7); }
+  .duck-toy { left: 23%; transform: scale(.76); }
+  .rabbit-teddy-toy { right: 8%; transform: scale(.76); }
 }
