@@ -1,152 +1,22 @@
-
-<svg
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 512 512"
->
-
-    <!-- Background -->
-
-    <rect
-        width="512"
-        height="512"
-        rx="120"
-        fill="#dfead7"
-    />
-
-
-    <!-- Ground -->
-
-    <ellipse
-        cx="256"
-        cy="390"
-        rx="145"
-        ry="35"
-        fill="#9ab58f"
-        opacity="0.45"
-    />
-
-
-    <!-- Maple's body -->
-
-    <ellipse
-        cx="256"
-        cy="285"
-        rx="125"
-        ry="135"
-        fill="#f4eee5"
-    />
-
-
-    <!-- Left black ear -->
-
-    <ellipse
-        cx="205"
-        cy="115"
-        rx="42"
-        ry="110"
-        fill="#252522"
-    />
-
-
-    <!-- Right white ear -->
-
-    <ellipse
-        cx="307"
-        cy="115"
-        rx="42"
-        ry="110"
-        fill="#f4eee5"
-    />
-
-
-    <!-- Head -->
-
-    <ellipse
-        cx="256"
-        cy="275"
-        rx="105"
-        ry="95"
-        fill="#f7f1e8"
-    />
-
-
-    <!-- Maple's black facial patch -->
-
-    <path
-        d="
-            M155 195
-            C190 170
-             225 180
-             235 210
-            C245 245
-             230 300
-             205 350
-            C175 330
-             155 285
-             155 195
-            Z
-        "
-        fill="#252522"
-    />
-
-
-    <!-- Eyes -->
-
-    <circle
-        cx="213"
-        cy="270"
-        r="12"
-        fill="#453f3a"
-    />
-
-    <circle
-        cx="299"
-        cy="270"
-        r="12"
-        fill="#453f3a"
-    />
-
-
-    <!-- Nose -->
-
-    <ellipse
-        cx="256"
-        cy="302"
-        rx="11"
-        ry="8"
-        fill="#c88787"
-    />
-
-
-    <!-- Tail -->
-
-    <circle
-        cx="363"
-        cy="345"
-        r="42"
-        fill="#fffaf2"
-    />
-
-
-    <!-- Maple leaf -->
-
-    <path
-        d="
-            M410 70
-            C455 78
-             470 110
-             450 140
-            C432 166
-             405 158
-             390 138
-            C375 118
-             380 88
-             410 70
-            Z
-        "
-        fill="#c78383"
-        opacity="0.9"
-    />
-
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#eef5e7"/>
+      <stop offset="1" stop-color="#cbdcbc"/>
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="112" fill="url(#bg)"/>
+  <ellipse cx="256" cy="370" rx="130" ry="34" fill="#a9c697" opacity=".55"/>
+  <ellipse cx="252" cy="290" rx="105" ry="92" fill="#c69c75"/>
+  <circle cx="252" cy="205" r="82" fill="#cfaa84"/>
+  <ellipse cx="201" cy="116" rx="28" ry="92" transform="rotate(-12 201 116)" fill="#2b2523"/>
+  <ellipse cx="300" cy="116" rx="27" ry="92" transform="rotate(12 300 116)" fill="#cfaa84"/>
+  <path d="M182 176c31-35 70-48 118-36-7 33-33 70-77 83-24 7-46-8-41-47Z" fill="#2b2523"/>
+  <circle cx="220" cy="205" r="8" fill="#111"/>
+  <circle cx="287" cy="205" r="8" fill="#111"/>
+  <circle cx="254" cy="238" r="7" fill="#6f4a43"/>
+  <path d="M250 247c-5 9-13 12-21 9M258 247c5 9 13 12 21 9" fill="none" stroke="#6f4a43" stroke-width="5" stroke-linecap="round"/>
+  <path d="M389 112c33 11 49 43 31 71-18 29-54 32-78 8-19-20-17-56 5-73 12-9 28-11 42-6Z" fill="#b85b4f"/>
+  <path d="M381 110c7-23 25-34 42-39-6 21-19 34-42 39Z" fill="#8e4d41"/>
+  <path d="M388 112c-18-16-22-37-20-54 18 12 29 28 20 54Z" fill="#8e4d41"/>
 </svg>
-
